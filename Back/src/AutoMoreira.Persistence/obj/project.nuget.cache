@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zuJLlJwVRdxfHhIXC8KZq1Q5ATaiMyWJZEGrnbmV3IRyVsYzWF+010s3nfD2IJUQT5KIXCdlK8mcWamAE+N39g==",
+  "dgSpecHash": "9yk1Nv4ShT+6kXTDV2+4bC3SGXkEPvju1f1ZrRFBwvV7ntNpcPbK2U6cMYfTbN7tEf6Tl4EMfZRUmaMzraGWug==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Persistence\\AutoMoreira.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Persistence\\AutoMoreira.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
