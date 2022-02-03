@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yU90trt0PxY9H/H+LUw63EGqc5qT6tEI/WfrAIYsDTCZD2TcZmvZAan7gN0KTU41rRdaMP50jT4B0pp4MuA+tA==",
+  "dgSpecHash": "fwSYUk7ynJqiAjvQhK4X0Y605gxEHRoRJMrmzWIGKbcccNiKc+xk6ilWvWc+DDP53/WFy7ehC8fUkOItMHc8YA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Application\\AutoMoreira.Application.csproj",
+  "projectFilePath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Application\\AutoMoreira.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.8\\microsoft.data.sqlite.core.5.0.8.nupkg.sha512",
     "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",

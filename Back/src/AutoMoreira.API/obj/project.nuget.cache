@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xytYotYGM6ISd9k4p+uPtU0Jh5hu1/1cKA0AKLChVTvfWaMjab/iGrLjtlr5oyqCJ9GKRy9/JD9kGEyY3uReaQ==",
+  "dgSpecHash": "/RZd3rB6RLSGBRIOMp+GXiZb254hXGCrv/3aW375JC33UIxdF9vuwhFZhNgIx7d1D6Eltpy9A1M7XaKJyAU+RA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.API\\AutoMoreira.API.csproj",
+  "projectFilePath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.API\\AutoMoreira.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.8\\microsoft.aspnetcore.jsonpatch.5.0.8.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj": {}
+    "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj": {
+    "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj",
         "projectName": "AutoMoreira.Domain",
-        "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj",
+        "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj",
         "packagesPath": "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

@@ -980,11 +980,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Application\\AutoMoreira.Application.csproj",
+      "projectUniqueName": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Application\\AutoMoreira.Application.csproj",
       "projectName": "AutoMoreira.Application",
-      "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Application\\AutoMoreira.Application.csproj",
+      "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Application\\AutoMoreira.Application.csproj",
       "packagesPath": "C:\\Users\\Pedro Rafael Santos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Application\\obj\\",
+      "outputPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -1005,11 +1005,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj": {
-              "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj"
+            "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj": {
+              "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Domain\\AutoMoreira.Domain.csproj"
             },
-            "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Persistence\\AutoMoreira.Persistence.csproj": {
-              "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AutoMoreira\\Back\\src\\AutoMoreira.Persistence\\AutoMoreira.Persistence.csproj"
+            "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Persistence\\AutoMoreira.Persistence.csproj": {
+              "projectPath": "C:\\Users\\Pedro Rafael Santos\\Documents\\AUTOMOREIRA\\Back\\src\\AutoMoreira.Persistence\\AutoMoreira.Persistence.csproj"
             }
           }
         }
