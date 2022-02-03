@@ -33,7 +33,7 @@ namespace AutoMoreira.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //Rafael SQLITE
+            //Rafael SQLITE 
             services.AddDbContext<AutoMoreiraContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
