@@ -1,0 +1,101 @@
+<!-- Form para fazer uma pesquisa -->
+<div class="container">
+  <div class="card mt-5" style="background-color: #B5B6B9;">
+
+    <div class="card-body mt-3">
+      <form method="" action="viaturas.php">
+        <div class="row">
+
+        <div class="col-12 col-md-6 col-lg-4">
+        <select class="form-select mb-3" aria-label="Escolha da marca" name="pmarca" id="pmarca">
+          <option selected value="0">Marca</option>
+
+            <option value="">opção</option>
+
+        </select>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <select class="form-select mb-4" aria-label="Escolha do modelo"  name="pmodelo" id="pmodelo">
+          <option selected value="0">Modelo</option>
+
+            <option class="options-modelos" value="" data-idmarca="">modelo</option>
+
+        </select>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <select class="form-select mb-3" aria-label="Escolha do Combustivel" name="pcombustivel">
+          <option selected value="0">Combustivel</option>
+
+            <option value="" id="pcombustivel" >Combustivel</option>
+
+
+        </select>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <select class="form-select mb-3" aria-label="Escolha do Ano" name="pano">
+          <option selected value="0">Ano</option>
+            <option value="" id="pano" >Ano</option>
+
+        </select>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <input class="form-control mb-3" type="text" value="" name="pprecomin" placeholder="Preço min">
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <input class="form-control mb-3" type="text" value="" name="pprecomax" placeholder="Preço max">
+      </div>
+
+        <div class="form-group d-flex justify-content-end">
+          <button class="btn btn-light mt-3 px-4 py-2" id="search-btn" type="submit">Procurar</button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+ <!-- Numero de veiculos listados -->
+ <div class="container mt-5">
+  <div class="card">
+    <div class="card-body text-center">
+      <span class="" *ngIf="veiculos && veiculos.length">
+        <div>{{veiculos.length}} veiculos encontrados!</div>
+
+      </span>
+      <span *ngIf="!veiculos.length">
+        Nenhum veiculo encontrado!
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mb-2 mt-4">
+    <div class="col-auto">
+      <label class="mt-1">Pesquisar:</label>
+    </div>
+    <div class="col-auto mb-3">
+      <input type="text"
+        class="form-control col-2"
+        placeholder="Pesquisar" [(ngModel)]="filtroLista" >
+    </div>
+  </div>
+<!-- Listagem de Veiculos -->
+<div class="container mt-5 my-5" *ngIf="veiculos && veiculos.length">
+  <div class="row" >
+    <div class="col-xl-4 col-md-6 col-12 mt-3" *ngFor="let veiculo of veiculosFiltrados">
+      <div class="card" style="background-color: #F6F4F4">
+        <img class="card-img-top" src="assets/images/veiculos/{{veiculo.imagemURL}}" alt="Card image cap">
+        <div class="card-body mt-2">
+          <h3 class="card-title mx-2">{{veiculo.marca.marcaNome}}</h3>
+          <h5 class="card-title mx-2">{{veiculo.modelo.modeloNome}}&nbsp;{{veiculo.versao}}</h5>
+          <h6 class="mt-3 mx-2">{{veiculo.ano}}&nbsp;&nbsp;{{veiculo.combustivel}}</h6>
+            <h6 class="mt-4 mx-2">{{veiculo.preco}} €</h6>
+          <div class="d-flex justify-content-end" >
+            <button href="" class="btn btn-danger py-2 px-4" (click)="detalheEvento(veiculo.veiculoId)"  role="button" aria-pressed="true">Ver&nbsp;mais</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

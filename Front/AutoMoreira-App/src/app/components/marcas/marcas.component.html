@@ -1,0 +1,29 @@
+<app-titulo [titulo]="'Marca'"></app-titulo>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+
+          <th>#</th>
+          <th>Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let marca of marcas">
+          <td>{{marca.marcaId}}</td>
+          <td>{{marca.marcaNome}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+    </div>
+
+
+  </div>
+</div>
+
+
+
