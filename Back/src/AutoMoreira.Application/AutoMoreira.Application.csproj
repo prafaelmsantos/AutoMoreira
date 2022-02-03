@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+   
+    <ProjectReference Include="..\AutoMoreira.Persistence\AutoMoreira.Persistence.csproj" />
+    <ProjectReference Include="..\AutoMoreira.Domain\AutoMoreira.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
