@@ -41,6 +41,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { AdminVeiculoDetalheComponent } from './components/admin/adminVeiculo-detalhe/adminVeiculo-detalhe.component';
 import { AdminVeiculoListaComponent } from './components/admin/adminVeiculo-lista/adminVeiculo-lista.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 
 
@@ -89,6 +90,7 @@ import { AdminVeiculoListaComponent } from './components/admin/adminVeiculo-list
       progressBar: true,
     }),
     NgxSpinnerModule,
+    ButtonsModule.forRoot(),
 
 
   ],
