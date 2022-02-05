@@ -9,6 +9,7 @@ using AutoMoreira.Persistence;
 using AutoMoreira.Persistence.Contextos;
 using AutoMoreira.Application.Contratos;
 using Microsoft.AspNetCore.Http;
+using AutoMoreira.Application.Dtos;
 
 
 namespace AutoMoreira.API.Controllers
@@ -30,7 +31,7 @@ namespace AutoMoreira.API.Controllers
             try
             {
                 var veiculos = await _veiculoService.GetAllVeiculosAsync();
-                if (veiculos == null) return NotFound("Nenhum veiculo encontrado.");
+                if (veiculos == null) return NoContent();
 
                 return Ok(veiculos);
             }
@@ -47,7 +48,7 @@ namespace AutoMoreira.API.Controllers
             try
             {
                 var veiculo = await _veiculoService.GetVeiculoByIdAsync(id);
-                if (veiculo == null) return NotFound("Evento por Id não encontrado.");
+                if (veiculo == null) return NoContent();
 
                 return Ok(veiculo);
             }
@@ -60,12 +61,12 @@ namespace AutoMoreira.API.Controllers
 
         
         [HttpPost]
-        public async Task<IActionResult> Post(Veiculo model)
+        public async Task<IActionResult> Post(VeiculoDto model)
         {
             try
             {
                 var veiculo = await _veiculoService.AddVeiculos(model);
-                if (veiculo == null) return BadRequest("Erro ao tentar adicionar evento.");
+                if (veiculo == null) return NoContent();
 
                 return Ok(veiculo);
             }
@@ -77,12 +78,12 @@ namespace AutoMoreira.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Veiculo model)
+        public async Task<IActionResult> Put(int id, VeiculoDto model)
         {
             try
             {
                 var veiculo = await _veiculoService.UpdateVeiculo(id, model);
-                if (veiculo == null) return BadRequest("Erro ao tentar adicionar evento.");
+                if (veiculo == null) return NoContent();
 
                 return Ok(veiculo);
             }
@@ -99,13 +100,13 @@ namespace AutoMoreira.API.Controllers
             try
             {
                 return await _veiculoService.DeleteVeiculo(id) ? 
-                       Ok("Deletado") : 
-                       BadRequest("Evento não deletado");
+                       Ok("Apagado") : 
+                       BadRequest("Veiculo não apagado");
             }
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar deletar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar apagar veiculos. Erro: {ex.Message}");
             }
         }
     }

@@ -53,6 +53,8 @@ namespace AutoMoreira.API
             services.AddScoped<IMarcaPersist, MarcaPersist>();
             services.AddScoped<IModeloPersist, ModeloPersist>();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
  
             services.AddSwaggerGen(c =>
             {

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMoreira.Domain;
+using AutoMoreira.Application.Dtos;
 
 namespace AutoMoreira.Application.Contratos
 {
     public interface IVeiculoService
     {
-        Task<Veiculo> AddVeiculos(Veiculo model);
-        Task<Veiculo> UpdateVeiculo(int veiculoId, Veiculo model);
+        
+        Task<VeiculoDto> AddVeiculos(VeiculoDto model);
+        Task<VeiculoDto> UpdateVeiculo(int veiculoId, VeiculoDto model);
         Task<bool> DeleteVeiculo(int veiculoId);
 
-        Task<Veiculo[]> GetAllVeiculosAsync();
-        Task<Veiculo> GetVeiculoByIdAsync(int veiculoId);
+        Task<VeiculoDto[]> GetAllVeiculosAsync();
+        Task<VeiculoDto> GetVeiculoByIdAsync(int veiculoId);
         
     }
 }

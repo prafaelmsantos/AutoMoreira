@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMoreira.Application.Dtos;
 using AutoMoreira.Application.Contratos;
 using AutoMoreira.Domain;
 using AutoMoreira.Persistence.Contratos;
@@ -12,19 +14,25 @@ namespace AutoMoreira.Application
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IVeiculoPersist _veiculoPersist;
-        public VeiculoService(IGeralPersist geralPersist, IVeiculoPersist veiculoPersist)
+        private readonly IMapper _mapper;
+        public VeiculoService(IGeralPersist geralPersist, IVeiculoPersist veiculoPersist,IMapper mapper)
         {
             _veiculoPersist = veiculoPersist;
             _geralPersist = geralPersist;
+            _mapper = mapper;;
         }
-        public async Task<Veiculo> AddVeiculos(Veiculo model)
+        public async Task<VeiculoDto> AddVeiculos(VeiculoDto model)
         {
+            
             try
             {
-                _geralPersist.Add<Veiculo>(model);
+                var veiculo = _mapper.Map<Veiculo>(model);
+                _geralPersist.Add(model);
+
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    return await _veiculoPersist.GetVeiculoByIdAsync(model.VeiculoId);
+                    var veiculoRetorno = await _veiculoPersist.GetVeiculoByIdAsync(veiculo.VeiculoId);
+                    return _mapper.Map<VeiculoDto>(veiculoRetorno);
                 }
                 return null;
             }
@@ -34,7 +42,7 @@ namespace AutoMoreira.Application
             }
         }
 
-        public async Task<Veiculo> UpdateVeiculo(int veiculoId, Veiculo model)
+        public async Task<VeiculoDto> UpdateVeiculo(int veiculoId, VeiculoDto model)
         {
             try
             {
@@ -43,10 +51,14 @@ namespace AutoMoreira.Application
 
                 model.VeiculoId = veiculo.VeiculoId;
 
-                _geralPersist.Update(model);
+                //O DTO vai ser mapeado para o meu evento
+                _mapper.Map(model, veiculo);
+
+                _geralPersist.Update<Veiculo>(veiculo);
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    return await _veiculoPersist.GetVeiculoByIdAsync(model.VeiculoId);
+                    var veiculoRetorno = await _veiculoPersist.GetVeiculoByIdAsync(veiculo.VeiculoId);
+                    return _mapper.Map<VeiculoDto>(veiculoRetorno);
                 }
                 return null;
             }
@@ -61,7 +73,7 @@ namespace AutoMoreira.Application
             try
             {
                 var veiculo= await _veiculoPersist.GetVeiculoByIdAsync(veiculoId);
-                if (veiculo == null) throw new Exception("Evento para delete não encontrado.");
+                if (veiculo == null) throw new Exception("Veiculo para delete não encontrado.");
 
                 _geralPersist.Delete<Veiculo>(veiculo);
                 return await _geralPersist.SaveChangesAsync();
@@ -72,14 +84,16 @@ namespace AutoMoreira.Application
             }
         }
 
-        public async Task<Veiculo[]> GetAllVeiculosAsync()
+        public async Task<VeiculoDto[]> GetAllVeiculosAsync()
         {
             try
             {
                 var veiculos = await _veiculoPersist.GetAllVeiculosAsync();
                 if (veiculos == null) return null;
 
-                return veiculos;
+                var resultado = _mapper.Map<VeiculoDto[]>(veiculos);
+                return resultado;
+
             }
             catch (Exception ex)
             {
@@ -87,14 +101,17 @@ namespace AutoMoreira.Application
             }
         }
 
-        public async Task<Veiculo> GetVeiculoByIdAsync(int veiculoId)
+        public async Task<VeiculoDto> GetVeiculoByIdAsync(int veiculoId)
         {
             try
             {
-                var veiculos = await _veiculoPersist.GetVeiculoByIdAsync(veiculoId);
-                if (veiculos== null) return null;
+                var veiculo = await _veiculoPersist.GetVeiculoByIdAsync(veiculoId);
+                if (veiculo== null) return null;
 
-                return veiculos;
+                //Atraves das DTOS (Data Transfer Object ou Objeto de Transferência de Dados ) serve para não expor toda a informação ( não xpor o dominio) 
+                 //a quem estiver a construir o front end / consumir a API
+                var resultado = _mapper.Map<VeiculoDto>(veiculo);
+                return resultado;
             }
             catch (Exception ex)
             {

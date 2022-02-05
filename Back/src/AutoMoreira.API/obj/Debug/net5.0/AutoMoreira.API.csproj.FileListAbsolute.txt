@@ -65,3 +65,9 @@ C:\Users\Pedro Rafael Santos\Documents\AUTOMOREIRA\Back\src\AutoMoreira.API\obj\
 C:\Users\Pedro Rafael Santos\Documents\AUTOMOREIRA\Back\src\AutoMoreira.API\obj\Debug\net5.0\ref\AutoMoreira.API.dll
 C:\Users\Pedro Rafael Santos\Documents\AUTOMOREIRA\Back\src\AutoMoreira.API\obj\Debug\net5.0\AutoMoreira.API.pdb
 C:\Users\Pedro Rafael Santos\Documents\AUTOMOREIRA\Back\src\AutoMoreira.API\obj\Debug\net5.0\AutoMoreira.API.genruntimeconfig.cache
+C:\Users\Pedro Rafael Santos\Documents\AutoMoreira\Back\src\AutoMoreira.API\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Pedro Rafael Santos\Documents\AutoMoreira\Back\src\AutoMoreira.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Pedro Rafael Santos\Documents\AutoMoreira\Back\src\AutoMoreira.API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Pedro Rafael Santos\Documents\AutoMoreira\Back\src\AutoMoreira.API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\Pedro Rafael Santos\Documents\AutoMoreira\Back\src\AutoMoreira.API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Pedro Rafael Santos\Documents\AutoMoreira\Back\src\AutoMoreira.API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
