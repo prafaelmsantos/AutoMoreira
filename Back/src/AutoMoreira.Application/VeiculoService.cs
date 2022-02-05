@@ -15,11 +15,11 @@ namespace AutoMoreira.Application
         private readonly IGeralPersist _geralPersist;
         private readonly IVeiculoPersist _veiculoPersist;
         private readonly IMapper _mapper;
-        public VeiculoService(IGeralPersist geralPersist, IVeiculoPersist veiculoPersist,IMapper mapper)
+        public VeiculoService(IGeralPersist geralPersist, IVeiculoPersist veiculoPersist, IMapper mapper)
         {
             _veiculoPersist = veiculoPersist;
             _geralPersist = geralPersist;
-            _mapper = mapper;;
+            _mapper = mapper;
         }
         public async Task<VeiculoDto> AddVeiculos(VeiculoDto model)
         {
@@ -27,7 +27,7 @@ namespace AutoMoreira.Application
             try
             {
                 var veiculo = _mapper.Map<Veiculo>(model);
-                _geralPersist.Add(model);
+                _geralPersist.Add<Veiculo>(veiculo);
 
                 if (await _geralPersist.SaveChangesAsync())
                 {
@@ -55,6 +55,7 @@ namespace AutoMoreira.Application
                 _mapper.Map(model, veiculo);
 
                 _geralPersist.Update<Veiculo>(veiculo);
+                
                 if (await _geralPersist.SaveChangesAsync())
                 {
                     var veiculoRetorno = await _veiculoPersist.GetVeiculoByIdAsync(veiculo.VeiculoId);

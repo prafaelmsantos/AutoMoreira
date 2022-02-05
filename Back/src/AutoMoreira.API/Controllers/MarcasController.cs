@@ -9,6 +9,7 @@ using AutoMoreira.Persistence;
 using AutoMoreira.Persistence.Contextos;
 using AutoMoreira.Application.Contratos;
 using Microsoft.AspNetCore.Http;
+using AutoMoreira.Application.Dtos;
 
 
 namespace AutoMoreira.API.Controllers
@@ -30,7 +31,7 @@ namespace AutoMoreira.API.Controllers
             try
             {
                 var marcas = await _marcaService.GetAllMarcasAsync();
-                if (marcas == null) return NotFound("Nenhum veiculo encontrado.");
+                if (marcas == null) return NoContent();
 
                 return Ok(marcas);
             }
@@ -47,7 +48,7 @@ namespace AutoMoreira.API.Controllers
             try
             {
                 var marca = await _marcaService.GetMarcaByIdAsync(id);
-                if (marca == null) return NotFound("Evento por Id não encontrado.");
+                if (marca == null) return NoContent();
 
                 return Ok(marca);
             }
@@ -60,12 +61,12 @@ namespace AutoMoreira.API.Controllers
 
         
         [HttpPost]
-        public async Task<IActionResult> Post(Marca model)
+        public async Task<IActionResult> Post(MarcaDto model)
         {
             try
             {
                 var marca = await _marcaService.AddMarcas(model);
-                if (marca == null) return BadRequest("Erro ao tentar adicionar evento.");
+                if (marca == null) return NotFound("Erro a criar a marca!");
 
                 return Ok(marca);
             }
@@ -77,12 +78,12 @@ namespace AutoMoreira.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Marca model)
+        public async Task<IActionResult> Put(int id, MarcaDto model)
         {
             try
             {
                 var marca = await _marcaService.UpdateMarca(id, model);
-                if (marca == null) return BadRequest("Erro ao tentar adicionar evento.");
+                if (marca == null) return NoContent();
 
                 return Ok(marca);
             }

@@ -38,13 +38,13 @@ namespace AutoMoreira.Persistence
         }
 
         //Rafael
-        public async Task<Modelo[]> GetModeloByMarcaIdAsync(int Id)
+        public async Task<Modelo[]> GetModeloByMarcaAsync(string marcaNome)
         {
             IQueryable<Modelo> query = _context.Modelos;
 
 
-            query = query.AsNoTracking().Include(x => x.Marca).OrderBy(p => p.MarcaId)
-                         .Where(p => p.MarcaId == Id);
+            query = query.AsNoTracking().Include(x => x.Marca).OrderBy(x => x.MarcaId)
+                         .Where(x => x.Marca.MarcaNome.ToLower().Contains(marcaNome.ToLower()));
 
             return await query.ToArrayAsync();
         }

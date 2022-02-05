@@ -9,6 +9,7 @@ using AutoMoreira.Persistence;
 using AutoMoreira.Persistence.Contextos;
 using AutoMoreira.Application.Contratos;
 using Microsoft.AspNetCore.Http;
+using AutoMoreira.Application.Dtos;
 
 
 namespace AutoMoreira.API.Controllers
@@ -30,7 +31,7 @@ namespace AutoMoreira.API.Controllers
             try
             {
                 var modelos = await _modeloService.GetAllModelosAsync();
-                if (modelos == null) return NotFound("Nenhum veiculo encontrado.");
+                if (modelos == null) return NoContent();
 
                 return Ok(modelos);
             }
@@ -47,7 +48,7 @@ namespace AutoMoreira.API.Controllers
             try
             {
                 var veiculo = await _modeloService.GetModeloByIdAsync(id);
-                if (veiculo == null) return NotFound("Evento por Id não encontrado.");
+                if (veiculo == null) return NoContent();
 
                 return Ok(veiculo);
             }
@@ -57,31 +58,31 @@ namespace AutoMoreira.API.Controllers
                     $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
             }
         }
-        [HttpGet("marcaId/{id}")]
-        public async Task<IActionResult> GetByMarcaId(int id)
+        [HttpGet("{marcaNome}/marcaNome")]
+        public async Task<IActionResult> GetByMarca(string marcaNome)
         {
             try
             {
-                var veiculo = await _modeloService.GetModeloByMarcaIdAsync(id);
-                if (veiculo == null) return NotFound("Veiculo por Id não encontrado.");
+                var modelos = await _modeloService.GetModeloByMarcaAsync(marcaNome);
+                if (modelos== null) return NoContent();
 
-                return Ok(veiculo);
+                return Ok(modelos);
             }
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar recuperar os modelos. Erro: {ex.Message}");
             }
         }
 
         
         [HttpPost]
-        public async Task<IActionResult> Post(Modelo model)
+        public async Task<IActionResult> Post(ModeloDto model)
         {
             try
             {
                 var veiculo = await _modeloService.AddModelos(model);
-                if (veiculo == null) return BadRequest("Erro ao tentar adicionar evento.");
+                if (veiculo == null) return NoContent();
 
                 return Ok(veiculo);
             }
@@ -93,12 +94,12 @@ namespace AutoMoreira.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Modelo model)
+        public async Task<IActionResult> Put(int id, ModeloDto model)
         {
             try
             {
                 var veiculo = await _modeloService.UpdateModelo(id, model);
-                if (veiculo == null) return BadRequest("Erro ao tentar adicionar evento.");
+                if (veiculo == null) return NoContent();
 
                 return Ok(veiculo);
             }

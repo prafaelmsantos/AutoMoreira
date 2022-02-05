@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMoreira.Application.Dtos;
 using AutoMoreira.Application.Contratos;
 using AutoMoreira.Domain;
 using AutoMoreira.Persistence.Contratos;
@@ -12,19 +14,25 @@ namespace AutoMoreira.Application
     {
         private readonly IGeralPersist _geralPersist;
         private readonly IModeloPersist _modeloPersist;
-        public ModeloService(IGeralPersist geralPersist, IModeloPersist modeloPersist)
+        private readonly IMapper _mapper;
+        public ModeloService(IGeralPersist geralPersist, IModeloPersist modeloPersist, IMapper mapper)
         {
             _modeloPersist = modeloPersist;
             _geralPersist = geralPersist;
+            _mapper = mapper;
         }
-        public async Task<Modelo> AddModelos(Modelo model)
+        public async Task<ModeloDto> AddModelos(ModeloDto model)
         {
             try
             {
-                _geralPersist.Add<Modelo>(model);
+                var modelo = _mapper.Map<Modelo>(model);
+                _geralPersist.Add<Modelo>(modelo);
+
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    return await _modeloPersist.GetModeloByIdAsync(model.ModeloId);
+                    var modeloRetorno = await _modeloPersist.GetModeloByIdAsync(modelo.ModeloId);
+                    return _mapper.Map<ModeloDto>(modeloRetorno);
+
                 }
                 return null;
             }
@@ -34,7 +42,7 @@ namespace AutoMoreira.Application
             }
         }
 
-        public async Task<Modelo> UpdateModelo(int modeloId, Modelo model)
+        public async Task<ModeloDto> UpdateModelo(int modeloId, ModeloDto model)
         {
             try
             {
@@ -43,10 +51,15 @@ namespace AutoMoreira.Application
 
                 model.ModeloId = modelo.ModeloId;
 
-                _geralPersist.Update(model);
+                //O DTO vai ser mapeado para o meu evento
+                _mapper.Map(model, modelo);
+                _geralPersist.Update<Modelo>(modelo);
+              
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    return await _modeloPersist.GetModeloByIdAsync(model.ModeloId);
+                  
+                    var modeloRetorno = await _modeloPersist.GetModeloByIdAsync(modelo.ModeloId);
+                    return _mapper.Map<ModeloDto>(modeloRetorno);
                 }
                 return null;
             }
@@ -61,7 +74,7 @@ namespace AutoMoreira.Application
             try
             {
                 var modelo = await _modeloPersist.GetModeloByIdAsync(modeloId);
-                if (modelo == null) throw new Exception("Evento para delete não encontrado.");
+                if (modelo == null) throw new Exception("Modelo para delete não encontrado.");
 
                 _geralPersist.Delete<Modelo>(modelo);
                 return await _geralPersist.SaveChangesAsync();
@@ -72,14 +85,15 @@ namespace AutoMoreira.Application
             }
         }
 
-        public async Task<Modelo[]> GetAllModelosAsync()
+        public async Task<ModeloDto[]> GetAllModelosAsync()
         {
             try
             {
                 var modelos = await _modeloPersist.GetAllModelosAsync();
                 if (modelos == null) return null;
 
-                return modelos;
+                var resultado = _mapper.Map<ModeloDto[]>(modelos);
+                return resultado;
             }
             catch (Exception ex)
             {
@@ -87,14 +101,17 @@ namespace AutoMoreira.Application
             }
         }
 
-        public async Task<Modelo> GetModeloByIdAsync(int modeloId)
+        public async Task<ModeloDto> GetModeloByIdAsync(int modeloId)
         {
             try
             {
-                var modelos = await _modeloPersist.GetModeloByIdAsync(modeloId);
-                if (modelos == null) return null;
+                var modelo = await _modeloPersist.GetModeloByIdAsync(modeloId);
+                if (modelo == null) return null;
 
-                return modelos;
+                //Atraves das DTOS (Data Transfer Object ou Objeto de Transferência de Dados ) serve para não expor toda a informação ( não xpor o dominio) 
+                 //a quem estiver a construir o front end / consumir a API
+                var resultado = _mapper.Map<ModeloDto>(modelo);
+                return resultado;
             }
             catch (Exception ex)
             {
@@ -102,14 +119,17 @@ namespace AutoMoreira.Application
             }
         }
 
-        public async Task<Modelo[]> GetModeloByMarcaIdAsync(int marcaId)
+        public async Task<ModeloDto[]> GetModeloByMarcaAsync(string marcaNome)
         {
             try
             {
-                var modelos = await _modeloPersist.GetModeloByMarcaIdAsync(marcaId);
+                var modelos = await _modeloPersist.GetModeloByMarcaAsync(marcaNome);
                 if (modelos == null) return null;
 
-                return modelos;
+                //Atraves das DTOS (Data Transfer Object ou Objeto de Transferência de Dados ) serve para não expor toda a informação ( não xpor o dominio) 
+                 //a quem estiver a construir o front end / consumir a API
+                var resultado = _mapper.Map<ModeloDto[]>(modelos);
+                return resultado;
             }
             catch (Exception ex)
             {
