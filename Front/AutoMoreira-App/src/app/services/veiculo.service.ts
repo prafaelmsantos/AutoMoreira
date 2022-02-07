@@ -31,6 +31,19 @@ public getVeiculoById(id: number): Observable<Veiculo>{
 
 }
 
+public postVeiculo(veiculo: Veiculo): Observable<Veiculo> {
+  return this.http.post<Veiculo>(this.baseURL, veiculo);
+}
+
+public putVeiculo(id: number, veiculo: Veiculo): Observable<Veiculo> {
+  return this.http.put<Veiculo>(`${this.baseURL}/${id}`, veiculo);
+  // ou return this.http.put<Evento>(`${this.baseURL}/${evento.id}`, evento);
+}
+
+public deleteVeiculo(id: number): Observable<any> {
+  return this.http.delete(`${this.baseURL}/${id}`);
+}
+
 public getModelos(): Observable<Modelo[]>{
 
   return this.http.get<Modelo[]>(this.baseURLModelos);

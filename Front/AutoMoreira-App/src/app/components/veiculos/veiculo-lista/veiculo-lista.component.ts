@@ -33,7 +33,9 @@ export class VeiculoListaComponent implements OnInit {
    public filtrarVeiculos(filtrarPor: string):Veiculo[]{
      filtrarPor = filtrarPor.toLocaleLowerCase();
      return this.veiculos.filter(
-       (veiculo : {cor: string;})=> veiculo.cor.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+
+       (veiculo : {cor: string; versao: string;})=> veiculo.cor.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+       veiculo.versao.toLocaleLowerCase().indexOf(filtrarPor) !== -1
      )
    }
 

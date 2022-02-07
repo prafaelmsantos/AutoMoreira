@@ -87,12 +87,12 @@
       <div class="card" style="background-color: #F6F4F4">
         <img class="card-img-top" src="assets/images/veiculos/{{veiculo.imagemURL}}" alt="Card image cap">
         <div class="card-body mt-2">
-          <h3 class="card-title mx-2">{{veiculo.marca.marcaNome}}</h3>
-          <h5 class="card-title mx-2">{{veiculo.modelo.modeloNome}}&nbsp;{{veiculo.versao}}</h5>
+          <h3 class="card-title mx-2">{{veiculo.marca?.marcaNome}}</h3>
+          <h5 class="card-title mx-2">{{veiculo.modelo?.modeloNome}}&nbsp;{{veiculo.versao}}</h5>
           <h6 class="mt-3 mx-2">{{veiculo.ano}}&nbsp;&nbsp;{{veiculo.combustivel}}</h6>
             <h6 class="mt-4 mx-2">{{veiculo.preco}} €</h6>
           <div class="d-flex justify-content-end" >
-            <button href="" class="btn btn-danger py-2 px-4" (click)="detalheEvento(veiculo.veiculoId)"  role="button" aria-pressed="true">Ver&nbsp;mais</button>
+            <button href="" class="btn btn-danger py-2 px-4" (click)="detalheEvento(veiculo.veiculoId)" role="button" aria-pressed="true">Ver&nbsp;mais</button>
           </div>
         </div>
       </div>

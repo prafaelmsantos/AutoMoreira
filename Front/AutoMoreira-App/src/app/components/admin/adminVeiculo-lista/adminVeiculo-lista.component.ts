@@ -18,8 +18,9 @@ export class AdminVeiculoListaComponent implements OnInit {
 
    public veiculos: Veiculo[] = [];
    public veiculosFiltrados: Veiculo[]=[];
+   public veiculoId = 0;
 
-   public larguraImg = 120;
+   public larguraImg = 160;
    public margemImg = 2;
    public exibirImg = true;
    public _filtroLista='';
@@ -52,7 +53,7 @@ export class AdminVeiculoListaComponent implements OnInit {
    //chamado antes de ser inicializado a aplicação. Antes do HTML ser interpretado
    public ngOnInit(): void {
      this.spinner.show();
-     this.getVeiculos();
+     this.carregarVeiculos();
    }
 
    public alterarEstadoImg(): void{
@@ -60,7 +61,7 @@ export class AdminVeiculoListaComponent implements OnInit {
   }
 
 
-   public getVeiculos(): void {
+   public carregarVeiculos(): void {
 
      //Vou fazer um get do protocolo http neste URL
      this.veiculoService.getVeiculos().subscribe({
@@ -79,22 +80,48 @@ export class AdminVeiculoListaComponent implements OnInit {
    }
 
    //Modal
-   openModal(template: TemplateRef<any>):void {
-     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-   }
+   openModal(event:any, template: TemplateRef<any>, veiculoId: number):void {
+    event.stopPropagation();
+    this.veiculoId = veiculoId;
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
 
    confirm(): void {
-     this.modalRef?.hide();
-     this.toastr.success('O Veiculo foi apagado com sucesso!', 'Apagado');
-   }
+    this.modalRef?.hide();
+    this.spinner.show();
 
-   decline(): void {
-     this.modalRef?.hide();
-   }
+    this.veiculoService.deleteVeiculo(this.veiculoId).subscribe(
+     (result: any) => {
+       if (result.message === 'Apagado'){
+       console.log(result); // Retorna o "Apagado do controler da API". Nesta caso aparece na consola: mesagem: "Apagado". Não é necessario este if. Para tal passar o any do result para string
 
-   detalheEvento(veiculoId: number): void{
+       this.toastr.success('O Veiculo foi apagado com sucesso.', 'Apagado!');
+       this.spinner.hide();
+       this.carregarVeiculos();
+       }
+
+
+     },
+     (error: any) => {
+       console.error(error);
+       this.toastr.error(`Erro ao tentar apagar o veiculo ${this.veiculoId}`, 'Erro!');
+       this.spinner.hide();
+     },
+     () => this.spinner.hide(),
+
+
+   );
+
+ }
+
+  decline(): void {
+    this.modalRef?.hide();
+  }
+
+   detalheEvento(id: number): void{
     //this.router.navigate([`veiculos/detalhe/${veiculoId}`]);
-    this.router.navigate([`admin/detalhe/${veiculoId}`]);
+    this.router.navigate([`admin/detalhe/${id}`]);
   }
 
 

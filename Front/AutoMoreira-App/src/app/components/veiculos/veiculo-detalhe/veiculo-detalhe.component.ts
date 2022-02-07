@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -14,6 +13,7 @@ import { VeiculoService } from 'src/app/services/veiculo.service';
 export class VeiculoDetalheComponent implements OnInit {
 
   veiculo = {} as Veiculo;
+
   constructor(private router: ActivatedRoute,
     private veiculoService: VeiculoService, private spinner: NgxSpinnerService,
     private toastr: ToastrService) { }
@@ -23,23 +23,24 @@ export class VeiculoDetalheComponent implements OnInit {
   }
 
   public carregarVeiculo(): void {
-    const veiculoIdParam = this.router.snapshot.paramMap.get('veiculoId');
+    const veiculoIdParam = this.router.snapshot.paramMap.get('id');
 
     if (veiculoIdParam !== null) {
       this.spinner.show();
 
-      this.veiculoService.getVeiculoById(+veiculoIdParam).subscribe(
-        (veiculo: Veiculo) => {
+      this.veiculoService.getVeiculoById(+veiculoIdParam).subscribe({
+        next: (veiculo: Veiculo) => {
+          //Eu pego cada uma das propriedades dentro do meu objecto evento que eu recebi do meu getVeiculobyId
           this.veiculo = {...veiculo};
 
         },
-        (error: any) => {
+        error: (error: any) => {
           this.spinner.hide();
           this.toastr.error('Erro ao tentar carregar o veiculo.', 'Erro!');
           console.error(error);
         },
-        () => this.spinner.hide(),
-      );
+        complete: () => this.spinner.hide(),
+      });
     }
   }
 

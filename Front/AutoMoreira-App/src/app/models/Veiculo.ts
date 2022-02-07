@@ -16,5 +16,4 @@ export interface Veiculo {
   combustivel:string;
   versao: string;
 
-
 }

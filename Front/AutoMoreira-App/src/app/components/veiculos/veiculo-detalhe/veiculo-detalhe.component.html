@@ -1,11 +1,20 @@
+
+  <div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a class="btn btn-lg btn-secondary me-md-2" routerLink="/veiculos/lista" type="button">
+        <i class="fa fa-arrow-left fa-xs"></i>&nbsp;Voltar
+      </a>
+    </div>
+  </div>
+
   <div class="row mt-5">
     <h2 class="mx-5">
-     {{veiculo.marca.marcaNome}} {{veiculo.modelo.modeloNome}} {{veiculo.versao}}
+     {{veiculo.marca?.marcaNome}} {{veiculo.modelo?.modeloNome}} {{veiculo.versao}}
     </h2>
   </div>
   <h4 class="d-flex justify-content-end">
     <div>
-      {{veiculo.versao}} €
+      {{veiculo.preco}} €
     </div>
   </h4>
   <hr class="container">
@@ -21,15 +30,11 @@
           <img src="assets/images/front1.jpg" class="d-block w-100">
         </slide>
         <slide>
-          <img src="assets/images/veiculos/{{veiculo.imagemURL}}" class="d-block w-100">
-        </slide>
-        <slide>
           <img src="assets/images/front3.jpg" class="d-block w-100">
         </slide>
       </carousel>
 
     </div>
-
 
     <h5 class="col-lg-4 col-md-12 col-12 mt-4 mx-4">
 

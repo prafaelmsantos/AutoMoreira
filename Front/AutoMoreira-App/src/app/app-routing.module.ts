@@ -35,7 +35,7 @@ const routes: Routes = [
     path: 'veiculos', component: VeiculosComponent,
     children: [
       //{ path: 'detalhe/:veiculoId/:marcaId/:modeloId', component: VeiculoDetalheComponent},
-      { path: 'detalhe/:veiculoId', component: VeiculoDetalheComponent},
+      { path: 'detalhe/:id', component: VeiculoDetalheComponent},
       { path: 'detalhe', component: VeiculoDetalheComponent },
       { path: 'lista', component: VeiculoListaComponent },
     ]
@@ -44,7 +44,7 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminComponent,
     children: [
-      { path: 'detalhe/:veiculoId', component: AdminVeiculoDetalheComponent },
+      { path: 'detalhe/:id', component: AdminVeiculoDetalheComponent },
       { path: 'detalhe', component: AdminVeiculoDetalheComponent },
       { path: 'lista', component: AdminVeiculoListaComponent },
     ]

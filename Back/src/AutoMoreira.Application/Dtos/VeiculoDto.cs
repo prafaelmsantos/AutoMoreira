@@ -18,7 +18,7 @@ namespace AutoMoreira.Application.Dtos
         public string Versao {get; set;} 
         public string Combustivel {get; set;}
 
-        [Range(1, 120000, ErrorMessage = "{0} tem de ser maior que 1 e menor que 1000000")]
+        //[Range(1, 120000, ErrorMessage = "{0} tem de ser maior que 1 e menor que 1000000")]
         [Display(Name ="Preço")]
         public double Preco {get; set;}
 

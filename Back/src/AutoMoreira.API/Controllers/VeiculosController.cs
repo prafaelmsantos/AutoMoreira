@@ -97,11 +97,16 @@ namespace AutoMoreira.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            
+
             try
             {
-                return await _veiculoService.DeleteVeiculo(id) ? 
-                       Ok("Apagado") : 
-                       BadRequest("Veiculo não apagado");
+                var veiculo = await _veiculoService.GetVeiculoByIdAsync(id);
+                if (veiculo == null) return NoContent();
+
+                return await _veiculoService.DeleteVeiculo(id) 
+                    ? Ok( new {message = "Apagado"}) 
+                    : throw new Exception("Veiculo não apagado");
             }
             catch (Exception ex)
             {

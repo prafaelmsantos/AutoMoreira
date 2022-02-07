@@ -10,66 +10,16 @@
         </div>
         <input type="text"
         class="form-control col-2"
-        placeholder="Pesquisar" [(ngModel)]="filtroLista" >
+        placeholder="Pesquisar" [(ngModel)]="filtroLista">
       </div>
     </div>
-  </div>
-
-  <!-- Form para fazer uma pesquisa -->
-<div class="container">
-  <div class="card mt-5" style="background-color: #B5B6B9;">
-
-    <div class="card-body mt-3">
-      <form method="" action="viaturas.php">
-        <div class="row">
-
-        <div class="col-12 col-md-6 col-lg-4">
-        <select class="form-select mb-3" aria-label="Escolha da marca" name="pmarca" id="pmarca">
-          <option selected value="0">Marca</option>
-
-            <option value="">opção</option>
-
-        </select>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <select class="form-select mb-4" aria-label="Escolha do modelo"  name="pmodelo" id="pmodelo">
-          <option selected value="0">Modelo</option>
-
-            <option class="options-modelos" value="" data-idmarca="">modelo</option>
-
-        </select>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <select class="form-select mb-3" aria-label="Escolha do Combustivel" name="pcombustivel">
-          <option selected value="0">Combustivel</option>
-
-            <option value="" id="pcombustivel" >Combustivel</option>
-
-
-        </select>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <select class="form-select mb-3" aria-label="Escolha do Ano" name="pano">
-          <option selected value="0">Ano</option>
-            <option value="" id="pano" >Ano</option>
-
-        </select>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <input class="form-control mb-3" type="text" value="" name="pprecomin" placeholder="Preço min">
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <input class="form-control mb-3" type="text" value="" name="pprecomax" placeholder="Preço max">
-      </div>
-
-        <div class="form-group d-flex justify-content-end">
-          <button class="btn btn-light mt-3 px-4 py-2" id="search-btn" type="submit">Procurar</button>
-        </div>
-        </div>
-      </form>
+    <div>
+      <a class="d-flex btn btn-secondary" routerLink="/admin/detalhe">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block">&nbsp;Novo</b>
+      </a>
     </div>
   </div>
-</div>
 
   <!-- <h3>Filtro: {{filtroLista}}</h3> -->
   <table class="table table-striped mt-2">
@@ -85,9 +35,11 @@
         <th>#</th>
         <th>Marca</th>
         <th>Modelo</th>
+        <th>versão</th>
         <th>Cor</th>
         <th>Ano</th>
-        <th>Observações</th>
+        <th>Combustivel</th>
+        <th>Preço</th>
         <th>Opções</th>
       </tr>
     </thead>
@@ -102,14 +54,16 @@
         <td>{{veiculo.veiculoId}}</td>
         <td>{{veiculo.marca.marcaNome}}</td>
         <td>{{veiculo.modelo.modeloNome}}</td>
+        <td>{{veiculo.versao}}</td>
         <td>{{veiculo.cor}}</td>
         <td>{{veiculo.ano}}</td>
-        <td>{{veiculo.observacoes}}</td>
+        <td>{{veiculo.combustivel}}</td>
+        <td>{{veiculo.preco}}&nbsp;€</td>
         <td>
-          <button type="button" class="btn btn-primary btn-sm mx-2" tooltip="Editar" (click)="detalheEvento(veiculo.veiculoId)">
+          <button type="button" class="btn btn-primary btn-lg mx-2" tooltip="Editar" (click)="detalheEvento(veiculo.veiculoId)">
             <i class="fa fa-edit"></i>
           </button>
-          <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+          <button type="button" class="btn btn-danger btn-lg" tooltip="Excluir" (click)="openModal($event, template, veiculo.veiculoId)">
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -130,7 +84,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Tem certeza que quer deletar este Veiculo?</p>
+    <p>Tem certeza que quer apagar o Veiculo de codigo {{this.veiculoId}} ?</p>
     <button type="button" class="btn btn-default" (click)="confirm()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
   </div>
