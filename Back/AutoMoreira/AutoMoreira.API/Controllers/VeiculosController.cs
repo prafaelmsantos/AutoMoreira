@@ -1,5 +1,6 @@
 ﻿using AutoMoreira.Core.Dto;
 using AutoMoreira.Persistence.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace AutoMoreira.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class VeiculosController : ControllerBase
@@ -24,6 +26,7 @@ namespace AutoMoreira.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             try
@@ -36,11 +39,12 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar encontrar veiculos. Erro: {ex.Message}");
             }
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             try
@@ -53,7 +57,7 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar encontrar veiculos. Erro: {ex.Message}");
             }
         }
 
@@ -79,7 +83,7 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar adicionar veiculos. Erro: {ex.Message}");
+                    $"Erro ao tentar adiciona foto ao veiculo. Erro: {ex.Message}");
             }
         }
 
@@ -114,7 +118,7 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar atualizar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar atualizar veiculos. Erro: {ex.Message}");
             }
         }
 

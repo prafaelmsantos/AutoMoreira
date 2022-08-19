@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using AutoMoreira.Core.Dto;
+using AutoMoreira.Core.Dto.Identity;
 using AutoMoreira.Core.Models;
+using AutoMoreira.Core.Models.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,12 @@ namespace AutoMoreira.Persistence.Mapper
             CreateMap<Marca, MarcaDTO>().ReverseMap();
 
             CreateMap<Modelo, ModeloDTO>().ReverseMap();
+
+            CreateMap<User, UserDTO>().ReverseMap();
+
+            CreateMap<User, UserLoginDTO>().ReverseMap();
+
+            CreateMap<User, UserUpdateDTO>().ReverseMap();
 
         }
     }
