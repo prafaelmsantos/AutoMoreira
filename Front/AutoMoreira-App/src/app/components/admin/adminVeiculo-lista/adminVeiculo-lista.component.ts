@@ -88,7 +88,7 @@ export class AdminVeiculoListaComponent implements OnInit {
   }
 
 
-   confirm(): void {
+  confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
 
@@ -101,8 +101,6 @@ export class AdminVeiculoListaComponent implements OnInit {
        this.spinner.hide();
        this.carregarVeiculos();
        }
-
-
      },
      (error: any) => {
        console.error(error);
@@ -114,7 +112,7 @@ export class AdminVeiculoListaComponent implements OnInit {
 
    );
 
- }
+  }
 
   decline(): void {
     this.modalRef?.hide();
@@ -122,7 +120,7 @@ export class AdminVeiculoListaComponent implements OnInit {
 
    detalheEvento(id: number): void{
     //this.router.navigate([`veiculos/detalhe/${veiculoId}`]);
-    this.router.navigate([`admin/detalhe/${id}`]);
+    this.router.navigate([`admin/veiculo/detalhe/${id}`]);
   }
 
   public mostraImagem(imagemURL: string) : string {

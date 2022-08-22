@@ -9,6 +9,8 @@ import { Modelo } from 'src/app/models/Modelo';
 import { Veiculo } from 'src/app/models/Veiculo';
 import { VeiculoService } from '@app/services/veiculo/veiculo.service';
 import { environment } from 'src/environments/environment';
+import { MarcaService } from '@app/services/marca/marca.service';
+import { ModeloService } from '@app/services/modelo/modelo.service';
 
 @Component({
   selector: 'app-adminVeiculo-detalhe',
@@ -21,8 +23,8 @@ export class AdminVeiculoDetalheComponent implements OnInit {
 
   veiculo = {} as Veiculo;
 
-  public marcas: any = [];
-  public modelos: any = [];
+  marcas: Marca[] = [];
+  modelos: Modelo[] = [];
 
   imagemURL = 'assets/img/upload.png';
   file: File;
@@ -51,6 +53,8 @@ export class AdminVeiculoDetalheComponent implements OnInit {
     private formBuilder:FormBuilder,
     private ActivatedRouter: ActivatedRoute,
     private veiculoService: VeiculoService,
+    private marcaService: MarcaService,
+    private modeloService: ModeloService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private router: Router,
@@ -128,7 +132,7 @@ export class AdminVeiculoDetalheComponent implements OnInit {
         this.veiculoService.postVeiculo(this.veiculo).subscribe({
           next: (veiculoRetorno: Veiculo) => {
             //admin/detalhe/1
-            this.router.navigate([`admin/detalhe/${veiculoRetorno.veiculoId}`]);
+            this.router.navigate([`admin/veiculo/detalhe/${veiculoRetorno.veiculoId}`]);
             this.toastr.success('veiculo guardado com Sucesso!', 'Sucesso');
           },
           error: (error: any) => {
@@ -155,24 +159,37 @@ export class AdminVeiculoDetalheComponent implements OnInit {
     }
   }
 
-
-
   public carregarMarcas(): void {
-    this.http.get('https://localhost:5001/api/marcas').subscribe(
-      response => {
-        this.marcas = response;
+    //Vou fazer um get do protocolo http neste URL
+    this.marcaService.getMarcas().subscribe({
+      next: (_marcas: Marca[]) => {
+        this.marcas = _marcas;
       },
-      error => console.log(error)
-    );
+      error: (error: any) => {
+        this.spinner.hide();
+        this.toastr.error('Erro ao carregar as Marcas.', 'Erro!')
+
+      },
+      complete: () =>this.spinner.hide()
+
+    });
   }
 
   public carregarModelos(): void {
-    this.http.get('https://localhost:5001/api/modelos').subscribe(
-      response => {
-        this.modelos = response;
+
+    //Vou fazer um get do protocolo http neste URL
+    this.modeloService.getModelos().subscribe({
+      next: (_modelos: Modelo[]) => {
+        this.modelos = _modelos;
       },
-      error => console.log(error)
-    );
+      error: (error: any) => {
+        this.spinner.hide();
+        this.toastr.error('Erro ao carregar os Modelos.', 'Erro!')
+
+      },
+      complete: () =>this.spinner.hide()
+
+    });
   }
 
   onFileChange(ev: any): void {

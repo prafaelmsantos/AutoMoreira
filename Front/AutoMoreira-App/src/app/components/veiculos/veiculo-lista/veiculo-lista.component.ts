@@ -89,7 +89,7 @@ export class VeiculoListaComponent implements OnInit {
      this.modalRef?.hide();
    }
 
-   detalheEvento(veiculoId: number): void{
+   detalheVeiculo(veiculoId: number): void{
     //this.router.navigate([`veiculos/detalhe/${veiculoId}`]);
     this.router.navigate([`veiculos/detalhe/${veiculoId}`]);
   }

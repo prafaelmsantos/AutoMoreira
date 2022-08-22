@@ -59,7 +59,7 @@ namespace AutoMoreira.Persistence.Services
                 //O DTO vai ser mapeado para o meu evento
                 _mapper.Map(model, marca);
 
-                _baseRepository.Update(model);
+                _baseRepository.Update<Marca>(marca);
                 if (await _baseRepository.SaveChangesAsync())
                 {
                     var marcaRetorno = await _marcaRepository.GetMarcaByIdAsync(marca.MarcaId);
@@ -79,7 +79,7 @@ namespace AutoMoreira.Persistence.Services
             try
             {
                 var marca = await _marcaRepository.GetMarcaByIdAsync(marcaId);
-                if (marca == null) throw new Exception("Marca para delete não encontrado.");
+                if (marca == null) throw new Exception("Marca para apagar não encontrado.");
 
                 _baseRepository.Delete<Marca>(marca);
                 return await _baseRepository.SaveChangesAsync();

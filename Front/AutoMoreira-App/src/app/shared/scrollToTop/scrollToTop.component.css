@@ -1,0 +1,11 @@
+p {
+  font-family: Lato;
+}
+
+#btnToTop {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  border-radius: 5px;
+
+}

@@ -1,5 +1,6 @@
 ﻿using AutoMoreira.Core.Dto;
 using AutoMoreira.Persistence.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutoMoreira.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MarcasController : ControllerBase
@@ -19,6 +21,7 @@ namespace AutoMoreira.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             try
@@ -31,11 +34,12 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar recuperar marcas. Erro: {ex.Message}");
             }
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             try
@@ -48,7 +52,7 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar recuperar marcas. Erro: {ex.Message}");
             }
         }
 
@@ -66,7 +70,7 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar adicionar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar adicionar marcas. Erro: {ex.Message}");
             }
         }
 
@@ -83,7 +87,7 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar atualizar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar atualizar marcas. Erro: {ex.Message}");
             }
         }
 
@@ -92,14 +96,24 @@ namespace AutoMoreira.API.Controllers
         {
             try
             {
-                return await _marcaService.DeleteMarca(id) ?
-                       Ok("Deletado") :
-                       BadRequest("Evento não deletado");
+                var marca = await _marcaService.GetMarcaByIdAsync(id);
+                if (marca == null) return NoContent();
+
+                if (await _marcaService.DeleteMarca(id))
+                {
+                  
+                   return Ok(new { message = "Apagado" });
+
+                }
+                else
+                {
+                    throw new Exception("Marca não apagado");
+                }
             }
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar deletar eventos. Erro: {ex.Message}");
+                    $"Erro ao tentar apagar marcas. Erro: {ex.Message}");
             }
         }
     }

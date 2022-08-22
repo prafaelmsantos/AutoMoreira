@@ -78,7 +78,7 @@ namespace AutoMoreira.Persistence.Services
             try
             {
                 var veiculo = await _veiculoRepository.GetVeiculoByIdAsync(veiculoId);
-                if (veiculo == null) throw new Exception("Veiculo para delete não encontrado.");
+                if (veiculo == null) throw new Exception("Veiculo para apagar não encontrado.");
 
                 _baseRepository.Delete<Veiculo>(veiculo);
                 return await _baseRepository.SaveChangesAsync();

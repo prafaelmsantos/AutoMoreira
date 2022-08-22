@@ -1,0 +1,60 @@
+<div class="container mb-4 mt-4">
+  <div>
+    <div class="d-flex justify-content-end">
+      <a class="d-flex btn btn-secondary" routerLink="/admin/modelo/lista" type="button">
+        <i class="fa fa-arrow-left mt-1"></i>
+        <b class="ml-1 d-none d-sm-block">&nbsp;Voltar</b>
+      </a>
+    </div>
+  </div>
+
+  <!-- Dados do veiculo -->
+  <div class="card rounded shadow-sm mt-4">
+    <div class="card-header" style="background-color: #A4A4A4;">
+      <h2>Modelo</h2>
+    </div>
+    <form [formGroup]="form">
+      <div class="p-3">
+        <div class="row">
+          <!-- <p>Form value: {{form.value | json}}</p>
+          <p>Form status: {{form.status | json}}</p> -->
+          <div class="col-6">
+            <div class="form-group">
+              <label>Nome do Modelo:</label>
+              <input type="text" class="form-control"
+              [ngClass]="cssValidator(f.modeloNome)"
+              formControlName="modeloNome" placeholder="Insira o nome do Modelo">
+              <div *ngIf="f.modeloNome.errors?.required" class="invalid-feedback">
+                O nome da marca é obrigatorio!
+              </div>
+            </div>
+            <div class="form-group">
+              <label>A que Marca pertence?</label>
+              <select formControlName="marcaId" class="form-control"
+              [ngClass]="cssValidator(f.marcaId)">
+              <option *ngFor="let marca of marcas" [value]="marca.marcaId">
+                {{marca.marcaNome}}
+              </option>
+              </select>
+              <div *ngIf="f.marcaId.errors && f.marcaId.touched" class="invalid-feedback">
+                <div *ngIf="f.marcaId.errors.required">Marca é obrigatório</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-outline-secondary border" (click)="resetForm($event)">
+            Cancelar Alteração
+          </button>
+          <button class="btn btn-success" [disabled]="!form.valid" (click)="guardarModelo()">
+            <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+            Guardar Modelo
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

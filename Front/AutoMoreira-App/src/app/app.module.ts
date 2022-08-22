@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { VeiculoService } from './services/veiculo/veiculo.service';
+import { MarcaService } from './services/marca/marca.service';
 import { UserService } from './services/user/user.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,8 +34,6 @@ import { ContactosComponent } from './components/contactos/contactos.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { SobreComponent } from './components/sobre/sobre.component';
-import { MarcasComponent } from './components/marcas/marcas.component';
-import { ModelosComponent } from './components/modelos/modelos.component';
 import { VeiculoDetalheComponent } from './components/veiculos/veiculo-detalhe/veiculo-detalhe.component';
 import { VeiculoListaComponent } from './components/veiculos/veiculo-lista/veiculo-lista.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -45,6 +44,15 @@ import { AdminVeiculoDetalheComponent } from './components/admin/adminVeiculo-de
 import { AdminVeiculoListaComponent } from './components/admin/adminVeiculo-lista/adminVeiculo-lista.component';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ScrollToTopComponent } from './shared/scrollToTop/scrollToTop.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { AdminHomeComponent } from './components/admin/adminHome/adminHome.component';
+import { AdminMarcaListaComponent } from './components/admin/adminMarca-lista/adminMarca-lista.component';
+import { AdminMarcaDetalheComponent } from './components/admin/adminMarca-detalhe/adminMarca-detalhe.component';
+import { AdminModeloListaComponent } from './components/admin/adminModelo-lista/adminModelo-lista.component';
+import { ModeloService } from './services/modelo/modelo.service';
+import { AdminModeloDetalheComponent } from './components/admin/adminModelo-detalhe/adminModelo-detalhe.component';
+
 
 
 defineLocale('pt-br', ptBrLocale);
@@ -59,8 +67,6 @@ defineLocale('pt-br', ptBrLocale);
     InicioComponent,
     SobreComponent,
     RodapeComponent,
-    MarcasComponent,
-    ModelosComponent,
     VeiculoDetalheComponent,
     VeiculoListaComponent,
     AdminComponent,
@@ -70,6 +76,14 @@ defineLocale('pt-br', ptBrLocale);
     AdminVeiculoDetalheComponent,
     AdminVeiculoListaComponent,
     DateTimeFormatPipe,
+    ScrollToTopComponent,
+    SidebarComponent,
+    AdminComponent,
+    AdminHomeComponent,
+    AdminMarcaListaComponent,
+    AdminMarcaDetalheComponent,
+    AdminModeloListaComponent,
+    AdminModeloDetalheComponent
 
   ],
   imports: [
@@ -98,6 +112,8 @@ defineLocale('pt-br', ptBrLocale);
   ],
   providers: [
     VeiculoService,
+    MarcaService,
+    ModeloService,
     UserService,
     { provide: CarouselConfig, useValue: { interval: 3500, noPause: true, showIndicators: true } },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

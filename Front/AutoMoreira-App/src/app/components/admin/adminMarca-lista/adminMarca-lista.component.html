@@ -1,0 +1,66 @@
+
+<div class="mt-4 mb-3 mr-4">
+  <div class="card rounded shadow-sm p-3">
+    <div class="d-flex">
+      <div class="flex-fill pr-3">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Filtro: </div>
+          </div>
+          <input type="text"
+          class="form-control col-2"
+          placeholder="Pesquisar" [(ngModel)]="filtroLista">
+        </div>
+      </div>
+      <div>
+        <a class="d-flex btn btn-secondary" routerLink="/admin/marca/detalhe">
+          <i class="fa fa-plus-circle my-1"></i>
+          <b class="ml-1 d-none d-sm-block">&nbsp;Novo</b>
+        </a>
+      </div>
+    </div>
+
+    <!-- <h3>Filtro: {{filtroLista}}</h3> -->
+    <table class="table table-striped mt-2">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Marca</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="marcas && marcas.length">
+        <tr *ngFor="let marca of marcasFiltrados">
+          <td>{{marca.marcaId}}</td>
+          <td>{{marca.marcaNome}}</td>
+          <td>
+            <button type="button" class="btn btn-primary mt-3 mx-2" tooltip="Editar" (click)="detalheMarca(marca.marcaId)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button type="button" class="btn btn-danger mt-3" tooltip="Excluir" (click)="openModal($event, template, marca.marcaId)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!marcas.length">
+        <tr>
+          <td colSpan="8" class="text-center">
+            <h5 class="mt-3">Nenhuma marca encontrada!</h5>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+
+  <!-- {{eventos | json}} -->
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Tem certeza que quer apagar a marca de codigo {{this.marcaId}} ?</p>
+      <button type="button" class="btn btn-default" (click)="confirm()">Sim</button>
+      <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
+    </div>
+  </ng-template>
+</div>
+

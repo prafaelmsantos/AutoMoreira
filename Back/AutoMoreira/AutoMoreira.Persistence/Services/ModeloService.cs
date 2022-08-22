@@ -75,7 +75,7 @@ namespace AutoMoreira.Persistence.Services
             try
             {
                 var modelo = await _modeloRepository.GetModeloByIdAsync(modeloId);
-                if (modelo == null) throw new Exception("Modelo para delete não encontrado.");
+                if (modelo == null) throw new Exception("Modelo para apagar não encontrado.");
 
                 _baseRepository.Delete<Modelo>(modelo);
                 return await _baseRepository.SaveChangesAsync();
