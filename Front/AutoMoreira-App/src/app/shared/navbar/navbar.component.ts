@@ -3,17 +3,17 @@ import { Router } from '@angular/router';
 import { UserService } from '@app/services/user/user.service';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
   //navbar collapsed
   isCollapsed = true;
 
   constructor(public userService: UserService,
-    private router: Router) { }
+  private router: Router) { }
 
   ngOnInit() {
   }

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactosComponent } from './components/contactos/contactos.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { InicioComponent } from './components/inicio/inicio.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { VeiculosComponent } from './components/veiculos/veiculos.component';
 import { VeiculoDetalheComponent } from './components/veiculos/veiculo-detalhe/veiculo-detalhe.component';
@@ -18,6 +17,8 @@ import { AdminMarcaListaComponent } from './components/admin/adminMarca-lista/ad
 import { AdminMarcaDetalheComponent } from './components/admin/adminMarca-detalhe/adminMarca-detalhe.component';
 import { AdminModeloListaComponent } from './components/admin/adminModelo-lista/adminModelo-lista.component';
 import { AdminModeloDetalheComponent } from './components/admin/adminModelo-detalhe/adminModelo-detalhe.component';
+import { HomeComponent } from './components/home/home.component';
+import { AdminInformacaoListaComponent } from './components/admin/AdminInformacao-lista/AdminInformacao-lista.component';
 
 
 
@@ -56,13 +57,14 @@ const routes: Routes = [
       { path: 'modelo/detalhe/:id', component: AdminModeloDetalheComponent },
       { path: 'modelo/detalhe', component: AdminModeloDetalheComponent },
       { path: 'home', component: AdminHomeComponent },
+      { path: 'informacao/lista', component: AdminInformacaoListaComponent },
     ]
   },
-  {path: 'inicio', component: InicioComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'sobre', component: SobreComponent},
   {path: 'contactos', component: ContactosComponent},
-  {path: '', redirectTo: 'inicio', pathMatch: 'full' },
-  {path: '**', redirectTo: 'inicio', pathMatch: 'full' }
+  {path: '', redirectTo: 'home', pathMatch: 'full' },
+  {path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

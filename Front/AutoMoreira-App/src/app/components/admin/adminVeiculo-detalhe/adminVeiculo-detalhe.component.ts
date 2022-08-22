@@ -114,7 +114,7 @@ export class AdminVeiculoDetalheComponent implements OnInit {
         },
         (error: any) => {
           this.spinner.hide();
-          this.toastr.error('Erro ao tentar carregar o veiculo.', 'Erro!');
+          this.toastr.error('Erro ao tentar carregar o veiculo!', 'Erro!');
           console.error(error);
         },
         () => this.spinner.hide(),
@@ -133,12 +133,12 @@ export class AdminVeiculoDetalheComponent implements OnInit {
           next: (veiculoRetorno: Veiculo) => {
             //admin/detalhe/1
             this.router.navigate([`admin/veiculo/detalhe/${veiculoRetorno.veiculoId}`]);
-            this.toastr.success('veiculo guardado com Sucesso!', 'Sucesso');
+            this.toastr.success('Veiculo guardado com sucesso!', 'Sucesso');
           },
           error: (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao guardar o veiculo', 'Erro');
+            this.toastr.error('Erro ao guardar o veiculo!', 'Erro');
           },
           complete: () => this.spinner.hide()
         });
@@ -147,11 +147,11 @@ export class AdminVeiculoDetalheComponent implements OnInit {
         this.veiculo =  {veiculoId: this.veiculo.veiculoId , ...this.form.value}; //Todos os campos do formulario
 
         this.veiculoService.putVeiculo(this.veiculo.veiculoId,this.veiculo).subscribe({
-          next: () => this.toastr.success('Veiculo Atualizado com Sucesso!', 'Sucesso'),
+          next: () => this.toastr.success('Veiculo atualizado com sucesso!', 'Sucesso'),
           error: (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao tentar Atualizar o veiculo', 'Erro');
+            this.toastr.error('Erro ao tentar atualizar o veiculo!', 'Erro');
           },
           complete: () => this.spinner.hide()
         }).add(() => this.spinner.hide());
@@ -167,7 +167,7 @@ export class AdminVeiculoDetalheComponent implements OnInit {
       },
       error: (error: any) => {
         this.spinner.hide();
-        this.toastr.error('Erro ao carregar as Marcas.', 'Erro!')
+        this.toastr.error('Erro ao carregar as Marcas!', 'Erro!')
 
       },
       complete: () =>this.spinner.hide()
@@ -184,7 +184,7 @@ export class AdminVeiculoDetalheComponent implements OnInit {
       },
       error: (error: any) => {
         this.spinner.hide();
-        this.toastr.error('Erro ao carregar os Modelos.', 'Erro!')
+        this.toastr.error('Erro ao carregar os Modelos!', 'Erro!')
 
       },
       complete: () =>this.spinner.hide()
@@ -210,10 +210,10 @@ export class AdminVeiculoDetalheComponent implements OnInit {
     this.veiculoService.postUpload(this.veiculoId, this.file).subscribe(
       () => {
         this.carregarVeiculo();
-        this.toastr.success('Imagem atualizada com Sucesso', 'Sucesso!');
+        this.toastr.success('Imagem atualizada com sucesso!', 'Sucesso!');
       },
       (error: any) => {
-        this.toastr.error('Erro ao fazer upload de imagem', 'Erro!');
+        this.toastr.error('Erro ao fazer upload de imagem!', 'Erro!');
         console.log(error);
       }
     ).add(() => this.spinner.hide());

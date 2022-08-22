@@ -39,7 +39,7 @@
           </button>
           <button class="btn btn-success" [disabled]="!form.valid" (click)="guardarMarca()">
             <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
-            Guardar Marca
+            {{estado === 'post'? 'Criar Marca' : 'Atualizar Marca' }}
           </button>
         </div>
       </div>

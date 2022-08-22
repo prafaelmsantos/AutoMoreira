@@ -51,7 +51,7 @@
           </button>
           <button class="btn btn-success" [disabled]="!form.valid" (click)="guardarModelo()">
             <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
-            Guardar Modelo
+            {{estado === 'post'? 'Criar Modelo' : 'Atualizar Modelo' }}
           </button>
         </div>
       </div>

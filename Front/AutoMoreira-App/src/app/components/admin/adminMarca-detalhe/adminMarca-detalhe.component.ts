@@ -97,12 +97,12 @@ export class AdminMarcaDetalheComponent implements OnInit {
           next: (marcaRetorno: Marca) => {
             //admin/detalhe/1
             this.router.navigate([`admin/marca/detalhe/${marcaRetorno.marcaId}`]);
-            this.toastr.success('Marca guardada com Sucesso!', 'Sucesso');
+            this.toastr.success('Marca guardada com sucesso!', 'Sucesso');
           },
           error: (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao guardar a marca', 'Erro');
+            this.toastr.error('Erro ao guardar a Marca!', 'Erro');
           },
           complete: () => this.spinner.hide()
         });
@@ -111,11 +111,11 @@ export class AdminMarcaDetalheComponent implements OnInit {
         this.marca =  {marcaId: this.marca.marcaId , ...this.form.value}; //Todos os campos do formulario
 
         this.marcaService.putMarca(this.marca.marcaId, this.marca).subscribe({
-          next: () => this.toastr.success('Marca Atualizada com Sucesso!', 'Sucesso'),
+          next: () => this.toastr.success('Marca atualizada com sucesso!', 'Sucesso'),
           error: (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao tentar Atualizar a Marca', 'Erro');
+            this.toastr.error('Erro ao tentar atualizar a Marca', 'Erro');
           },
           complete: () => this.spinner.hide()
         }).add(() => this.spinner.hide());

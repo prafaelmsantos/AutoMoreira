@@ -21,7 +21,7 @@
     </div>
 
     <!-- <h3>Filtro: {{filtroLista}}</h3> -->
-    <table class="table table-striped mt-2">
+    <table class="table table-hover mt-2">
       <thead class="table-dark">
         <tr>
           <th>
@@ -50,7 +50,7 @@
               [style.width.px]="larguraImg"
               [style.margin.px]="margemImg" alt="">
           </td>
-          <td>{{veiculo.veiculoId}}</td>
+          <th scope="row">{{veiculo.veiculoId}}</th>
           <td>{{veiculo.marca.marcaNome}}</td>
           <td>{{veiculo.modelo.modeloNome}}</td>
           <td>{{veiculo.versao}}</td>

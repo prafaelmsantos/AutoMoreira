@@ -83,7 +83,7 @@ export class AdminModeloDetalheComponent implements OnInit {
         },
         (error: any) => {
           this.spinner.hide();
-          this.toastr.error('Erro ao tentar carregar o modelo.', 'Erro!');
+          this.toastr.error('Erro ao tentar carregar o Modelo.', 'Erro!');
           console.error(error);
         },
         () => this.spinner.hide(),
@@ -102,12 +102,12 @@ export class AdminModeloDetalheComponent implements OnInit {
           next: (modeloRetorno: Modelo) => {
             //admin/detalhe/1
             this.router.navigate([`admin/modelo/detalhe/${modeloRetorno.modeloId}`]);
-            this.toastr.success('Modelo guardado com Sucesso!', 'Sucesso');
+            this.toastr.success('Modelo guardado com sucesso!', 'Sucesso');
           },
           error: (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao guardar o modelo', 'Erro');
+            this.toastr.error('Erro ao guardar o Modelo!', 'Erro');
           },
           complete: () => this.spinner.hide()
         });
@@ -116,11 +116,11 @@ export class AdminModeloDetalheComponent implements OnInit {
         this.modelo =  {modeloId: this.modelo.modeloId , ...this.form.value}; //Todos os campos do formulario
 
         this.modeloService.putModelo(this.modelo.modeloId, this.modelo).subscribe({
-          next: () => this.toastr.success('Modelo Atualizado com Sucesso!', 'Sucesso'),
+          next: () => this.toastr.success('Modelo atualizado com sucesso!', 'Sucesso'),
           error: (error: any) => {
             console.error(error);
             this.spinner.hide();
-            this.toastr.error('Erro ao tentar atualizar o Modelo', 'Erro');
+            this.toastr.error('Erro ao tentar atualizar o Modelo!', 'Erro');
           },
           complete: () => this.spinner.hide()
         }).add(() => this.spinner.hide());
@@ -136,7 +136,7 @@ export class AdminModeloDetalheComponent implements OnInit {
       },
       error: (error: any) => {
         this.spinner.hide();
-        this.toastr.error('Erro ao carregar as Marcas.', 'Erro!')
+        this.toastr.error('Erro ao carregar as Marcas!', 'Erro!')
 
       },
       complete: () =>this.spinner.hide()

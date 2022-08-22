@@ -27,12 +27,10 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner'
 
-import { NavComponent } from './shared/nav/nav.component';
 import { RodapeComponent } from './shared/rodape/rodape.component';
 import { VeiculosComponent } from './components/veiculos/veiculos.component';
 import { ContactosComponent } from './components/contactos/contactos.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { InicioComponent } from './components/inicio/inicio.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { VeiculoDetalheComponent } from './components/veiculos/veiculo-detalhe/veiculo-detalhe.component';
 import { VeiculoListaComponent } from './components/veiculos/veiculo-lista/veiculo-lista.component';
@@ -52,6 +50,9 @@ import { AdminMarcaDetalheComponent } from './components/admin/adminMarca-detalh
 import { AdminModeloListaComponent } from './components/admin/adminModelo-lista/adminModelo-lista.component';
 import { ModeloService } from './services/modelo/modelo.service';
 import { AdminModeloDetalheComponent } from './components/admin/adminModelo-detalhe/adminModelo-detalhe.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { AdminInformacaoListaComponent } from './components/admin/AdminInformacao-lista/AdminInformacao-lista.component';
 
 
 
@@ -60,11 +61,10 @@ defineLocale('pt-br', ptBrLocale);
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     VeiculosComponent,
     ContactosComponent,
     PerfilComponent,
-    InicioComponent,
+    HomeComponent,
     SobreComponent,
     RodapeComponent,
     VeiculoDetalheComponent,
@@ -83,7 +83,9 @@ defineLocale('pt-br', ptBrLocale);
     AdminMarcaListaComponent,
     AdminMarcaDetalheComponent,
     AdminModeloListaComponent,
-    AdminModeloDetalheComponent
+    AdminModeloDetalheComponent,
+    NavbarComponent,
+    AdminInformacaoListaComponent
 
   ],
   imports: [

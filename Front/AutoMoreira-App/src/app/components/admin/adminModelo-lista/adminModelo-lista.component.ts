@@ -82,14 +82,14 @@ export class AdminModeloListaComponent implements OnInit {
        if (result.message === 'Apagado'){
        console.log(result); // Retorna o "Apagado do controler da API". Nesta caso aparece na consola: mesagem: "Apagado". Não é necessario este if. Para tal passar o any do result para string
 
-       this.toastr.success('O Modelo foi apagado com sucesso.', 'Apagado!');
+       this.toastr.success('O Modelo foi apagado com sucesso!', 'Apagado!');
        this.spinner.hide();
        this.carregarModelos();
        }
      },
      (error: any) => {
        console.error(error);
-       this.toastr.error(`Erro ao tentar apagar o modelo ${this.modeloId}`, 'Erro!');
+       this.toastr.error(`Erro ao tentar apagar o Modelo ${this.modeloId}`, 'Erro!');
        this.spinner.hide();
      },
      () => this.spinner.hide(),

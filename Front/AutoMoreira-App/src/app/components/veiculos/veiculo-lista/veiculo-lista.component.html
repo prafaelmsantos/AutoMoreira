@@ -31,7 +31,7 @@
 <!-- Listagem de Veiculos -->
 <div class="container mt-5" *ngIf="veiculos && veiculos.length">
   <div class="row">
-    <div class="col-xl-4 col-md-6 col-12 mt-3 mb-5" *ngFor="let veiculo of veiculosFiltrados">
+    <div class="col-xl-4 col-md-6 col-12 mt-3 mb-3" *ngFor="let veiculo of veiculosFiltrados">
       <div class="card" style="background-color: #F6F4F4">
         <img class="card-img-top" [src]="mostraImagem(veiculo.imagemURL)">
         <div class="card-body mt-2">

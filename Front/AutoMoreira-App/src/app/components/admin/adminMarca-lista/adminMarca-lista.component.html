@@ -20,18 +20,17 @@
       </div>
     </div>
 
-    <!-- <h3>Filtro: {{filtroLista}}</h3> -->
-    <table class="table table-striped mt-2">
-      <thead class="table-dark">
+    <table class="table table-hover mt-2">
+      <thead>
         <tr>
-          <th>#</th>
-          <th>Marca</th>
-          <th>Ações</th>
+          <th scope="col">#</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody *ngIf="marcas && marcas.length">
         <tr *ngFor="let marca of marcasFiltrados">
-          <td>{{marca.marcaId}}</td>
+          <th scope="row">{{marca.marcaId}}</th>
           <td>{{marca.marcaNome}}</td>
           <td>
             <button type="button" class="btn btn-primary mt-3 mx-2" tooltip="Editar" (click)="detalheMarca(marca.marcaId)">
