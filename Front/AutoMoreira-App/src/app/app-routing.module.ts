@@ -19,20 +19,48 @@ import { AdminModeloListaComponent } from './components/admin/adminModelo-lista/
 import { AdminModeloDetalheComponent } from './components/admin/adminModelo-detalhe/adminModelo-detalhe.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminInformacaoListaComponent } from './components/admin/AdminInformacao-lista/AdminInformacao-lista.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  { //Todos os filhos tem de ser autenticados
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'user', redirectTo: 'user/perfil' },
+      { path: 'user/perfil', component: PerfilComponent },
+      { path: 'admin', redirectTo:'admin/home'},
+      {
+        path: 'admin', component: AdminComponent,
+        children: [
+          { path: 'veiculo/detalhe/:id', component: AdminVeiculoDetalheComponent },
+          { path: 'veiculo/detalhe', component: AdminVeiculoDetalheComponent },
+          { path: 'veiculo/lista', component: AdminVeiculoListaComponent },
+          { path: 'marca/lista', component: AdminMarcaListaComponent },
+          { path: 'marca/detalhe/:id', component: AdminMarcaDetalheComponent },
+          { path: 'marca/detalhe', component: AdminMarcaDetalheComponent },
+          { path: 'modelo/lista', component: AdminModeloListaComponent },
+          { path: 'modelo/detalhe/:id', component: AdminModeloDetalheComponent },
+          { path: 'modelo/detalhe', component: AdminModeloDetalheComponent },
+          { path: 'home', component: AdminHomeComponent },
+          { path: 'informacao/lista', component: AdminInformacaoListaComponent },
+        ]
+      },
+    ]
+  },
   {
     path: 'user', component: UserComponent,
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
+
     ]
   },
-  {
-    path: 'user/perfil', component: PerfilComponent
-  },
+
   {path: 'veiculos', redirectTo:'veiculos/lista'},
   {
     path: 'veiculos', component: VeiculosComponent,
@@ -43,27 +71,9 @@ const routes: Routes = [
       { path: 'lista', component: VeiculoListaComponent },
     ]
   },
-  {path: 'admin', redirectTo:'admin/home'},
-  {
-    path: 'admin', component: AdminComponent,
-    children: [
-      { path: 'veiculo/detalhe/:id', component: AdminVeiculoDetalheComponent },
-      { path: 'veiculo/detalhe', component: AdminVeiculoDetalheComponent },
-      { path: 'veiculo/lista', component: AdminVeiculoListaComponent },
-      { path: 'marca/lista', component: AdminMarcaListaComponent },
-      { path: 'marca/detalhe/:id', component: AdminMarcaDetalheComponent },
-      { path: 'marca/detalhe', component: AdminMarcaDetalheComponent },
-      { path: 'modelo/lista', component: AdminModeloListaComponent },
-      { path: 'modelo/detalhe/:id', component: AdminModeloDetalheComponent },
-      { path: 'modelo/detalhe', component: AdminModeloDetalheComponent },
-      { path: 'home', component: AdminHomeComponent },
-      { path: 'informacao/lista', component: AdminInformacaoListaComponent },
-    ]
-  },
   {path: 'home', component: HomeComponent},
   {path: 'sobre', component: SobreComponent},
   {path: 'contactos', component: ContactosComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

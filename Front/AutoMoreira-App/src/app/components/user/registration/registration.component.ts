@@ -50,7 +50,7 @@ export class RegistrationComponent implements OnInit {
   register(): void {
     this.user = { ...this.form.value };
     this.userService.register(this.user).subscribe(
-      () => this.router.navigateByUrl('/inicio'),
+      () => this.router.navigateByUrl('/home'),
       (error: any) => this.toaster.error(error.error)
     )
   }
