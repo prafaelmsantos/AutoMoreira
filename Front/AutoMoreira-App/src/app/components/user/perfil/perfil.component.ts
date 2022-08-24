@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserUpdate } from '@app/models/identity/UserUpdate';
+import { UserService } from '@app/services/user/user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { ValidatorField } from 'src/app/helpers/ValidatorField';
 
 @Component({
@@ -9,43 +14,86 @@ import { ValidatorField } from 'src/app/helpers/ValidatorField';
 })
 export class PerfilComponent implements OnInit {
 
-  form: FormGroup = this.formBuilder.group({});
-  // form!: FormGroup;
+  userUpdate = {} as UserUpdate;
+  form!: FormGroup;
 
-  get f(): any {
-    return this.form.controls;
+  constructor(
+    private fb: FormBuilder,
+    public userService: UserService,
+    private router: Router,
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {}
 
+  ngOnInit(): void {
+    this.validation();
+    this.carregarUtilizador();
   }
 
-  constructor(private formBuilder:FormBuilder) { }
-
-  ngOnInit() {
-    this.validation();
+  private carregarUtilizador(): void {
+    this.spinner.show();
+    this.userService
+      .getUser()
+      .subscribe(
+        (userRetorno: UserUpdate) => {
+          console.log(userRetorno);
+          this.userUpdate = userRetorno;
+          this.form.patchValue(this.userUpdate);
+          //this.toaster.success('Utilizador Carregado!', 'Sucesso!');
+        },
+        (error) => {
+          console.error(error);
+          this.toaster.error('Utilizador não Carregado!', 'Erro!');
+          this.router.navigate(['/dashboard']);
+        }
+      )
+      .add(this.spinner.hide());
   }
 
   private validation(): void {
     const formOptions: AbstractControlOptions = {
-      validators: ValidatorField.MustMatch('password', 'confirmePassword')
+      validators: ValidatorField.MustMatch('password', 'confirmePassword'),
     };
 
-    this.form = this.formBuilder.group({
-      primeiroNome: ['', Validators.required],
-      ultimoNome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      telefone: ['', [Validators.required]],
-      descricao: ['', Validators.required],
-      funcao: ['', Validators.required],
-      password: ['', [Validators.minLength(6), Validators.nullValidator]],
-      confirmePassword: ['', Validators.nullValidator]
-    }, formOptions);
+    this.form = this.fb.group(
+      {
+        userName: [''],
+        primeiroNome: ['', Validators.required],
+        ultimoNome: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phoneNumber: ['', [Validators.required]],
+        descricao: ['', Validators.required],
+        funcao: ['Cliente', Validators.required],
+        password: ['', [Validators.minLength(6), Validators.nullValidator]],
+        confirmePassword: ['', Validators.nullValidator],
+      },
+      formOptions
+    );
+  }
+
+  // Conveniente para pegar um FormField apenas com a letra F
+  get f(): any {
+    return this.form.controls;
   }
 
   onSubmit(): void {
+    this.atualizarUtilizador();
+  }
 
-    // Vai parar aqui se o form estiver inválido
-    if (this.form.invalid) {
-      return;
-    }
+  public atualizarUtilizador() {
+    this.userUpdate = { ...this.form.value };
+    this.spinner.show();
+
+    this.userService
+      .updateUser(this.userUpdate)
+      .subscribe(
+        () => this.toaster.success('Utilizador atualizado!', 'Sucesso!'),
+        (error) => {
+          this.toaster.error(error.error);
+          console.error(error);
+        }
+      )
+      .add(() => this.spinner.hide());
   }
 
   public resetForm(event: any): void {

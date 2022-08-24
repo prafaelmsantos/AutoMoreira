@@ -65,7 +65,7 @@ namespace AutoMoreira.Persistence.Services
             }
             catch (System.Exception ex)
             {
-                throw new Exception($"Erro ao tentar criar conta de utilizador. Erro: {ex.Message}");
+                throw new Exception($"Erro ao tentar criar conta de utilizador!. Erro: {ex.Message}");
 
             }
         }
@@ -92,20 +92,29 @@ namespace AutoMoreira.Persistence.Services
             }
         }
 
-        public async Task<UserUpdateDTO> UpdateAccount(UserUpdateDTO userUpdateDto)
+        public async Task<UserUpdateDTO> UpdateAccount(UserUpdateDTO userUpdateDTO)
         {
             try
             {
-                var user = await _userRepository.GetUserByUserNameAsync(userUpdateDto.UserName);
+                var user = await _userRepository.GetUserByUserNameAsync(userUpdateDTO.UserName);
                 if (user == null)
                 {
                     return null;
                 }
-                _mapper.Map(userUpdateDto, user);
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                //Para não colocar o "id" no model userupdate no FE
+                userUpdateDTO.Id = user.Id;
 
-                var result = await _userManager.ResetPasswordAsync(user, token, userUpdateDto.Password);
+                _mapper.Map(userUpdateDTO, user);
+
+                if (userUpdateDTO.Password != null)
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                    await _userManager.ResetPasswordAsync(user, token, userUpdateDTO.Password);
+                }
+                
                 _userRepository.Update<User>(user);
+
                 if (await _userRepository.SaveChangesAsync())
                 {
                     var userRetorno = await _userRepository.GetUserByUserNameAsync(user.UserName);

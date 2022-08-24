@@ -114,13 +114,23 @@ namespace AutoMoreira.API.Controllers
         {
             try
             {
+                //Caso o userName não tente passar um token diferente
+                if (userUpdateDTO.UserName != User.GetUserName())
+                {
+                    return Unauthorized("O Utilizador é invalido!");
+                }
                 var user = await _userService.GetUserByUserNameAsync(User.GetUserName());
-                if (user == null) return Unauthorized("Utilizador Inválido");
+                if (user == null) return Unauthorized("Utilizador Inválido!");
 
                 var userReturn = await _userService.UpdateAccount(userUpdateDTO);
                 if (userReturn == null) return NoContent();
 
-                return Ok(userReturn);
+                return Ok(new
+                {
+                    userName = userReturn.UserName,
+                    PrimeroNome = userReturn.PrimeiroNome,
+                    token = _tokenService.CreateToken(userReturn).Result
+                });
             }
             catch (Exception ex)
             {
