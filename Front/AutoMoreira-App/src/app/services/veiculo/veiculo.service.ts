@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Veiculo } from '../../models/Veiculo';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+import { PaginatedResult } from '@app/models/pagination';
 
 @Injectable(
     /*//Eu posso injectar esta classe em qualquer lugar
@@ -17,10 +18,36 @@ baseURL = 'https://localhost:5001/api/veiculos';
 
 constructor(private http: HttpClient) { }
 
-  public getVeiculos(): Observable<Veiculo[]>{
+/*   public getVeiculos(): Observable<Veiculo[]>{
 
     return this.http.get<Veiculo[]>(this.baseURL).pipe(take(1));
 
+  } */
+  public getVeiculos(page?: number, itemsPerPage?: number, term?: string): Observable<PaginatedResult<Veiculo[]>> {
+    const paginatedResult: PaginatedResult<Veiculo[]> = new PaginatedResult<Veiculo[]>();
+
+    let params = new HttpParams;
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+    }
+
+    if (term != null && term != '')
+      params = params.append('term', term)
+      return this.http
+      .get<Veiculo[]>(this.baseURL, {observe: 'response', params })
+      .pipe(
+        take(1),
+        map((response) => {
+          //O body é todo o retorno da API
+          paginatedResult.result = response.body;
+          if(response.headers.has('Pagination')) {
+            //Vai buscar o que esta na header
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        }));
   }
 
   public getVeiculoById(id: number): Observable<Veiculo>{

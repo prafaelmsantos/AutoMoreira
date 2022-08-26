@@ -1,11 +1,14 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environment';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Veiculo } from 'src/app/models/Veiculo';
 import { VeiculoService } from '@app/services/veiculo/veiculo.service';
+import { PaginatedResult, Pagination } from '@app/models/pagination';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-veiculo-lista',
@@ -18,31 +21,39 @@ export class VeiculoListaComponent implements OnInit {
    modalRef?: BsModalRef;
 
    public veiculos: Veiculo[] = [];
-   public veiculosFiltrados: Veiculo[]=[];
+   public pagination = {} as Pagination;
 
 
-   public _filtroLista='';
-
-   public get filtroLista(): string{
-     return this._filtroLista;
-   }
-   public set filtroLista(value: string){
-     this._filtroLista= value;
-     this.veiculosFiltrados=this.filtroLista ? this.filtrarVeiculos(this.filtroLista):this.veiculos;
-   }
-
-   public filtrarVeiculos(filtrarPor: string):Veiculo[]{
-     filtrarPor = filtrarPor.toLocaleLowerCase();
-     return this.veiculos.filter(
-
-       (veiculo : {cor: string; versao: string;})=> veiculo.cor.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-       veiculo.versao.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-     )
-   }
+   termoBuscaChanged: Subject<string> = new Subject<string>();
+   public filtrarEventos(evt: any): void {
+    if (this.termoBuscaChanged.observers.length === 0) {
+      this.termoBuscaChanged
+        .pipe(debounceTime(1500))
+        .subscribe((filtrarPor) => {
+          this.spinner.show();
+          this.veiculoService
+            .getVeiculos(
+              this.pagination.currentPage,
+              this.pagination.itemsPerPage,
+              filtrarPor
+            ).subscribe(
+              (paginatedResult: PaginatedResult<Veiculo[]>) => {
+                this.veiculos = paginatedResult.result;
+                this.pagination = paginatedResult.pagination;
+              },
+              (error: any) => {
+                this.spinner.hide();
+                this.toastr.error('Erro ao carregar os Vventos', 'Erro!');
+              }
+            )
+            .add(() => this.spinner.hide());
+        });
+    }
+    this.termoBuscaChanged.next(evt.value);
+  }
 
    constructor(
      private veiculoService: VeiculoService,
-     private modalService: BsModalService,
      private toastr: ToastrService,
      private spinner: NgxSpinnerService,
      private router: Router) {
@@ -52,18 +63,20 @@ export class VeiculoListaComponent implements OnInit {
    //ngOnInit é um metodo que vai ser
    //chamado antes de ser inicializado a aplicação. Antes do HTML ser interpretado
    public ngOnInit(): void {
-     this.spinner.show();
-     this.getVeiculos();
+    this.pagination = {currentPage: 1, itemsPerPage:3, totalItems: 1} as Pagination;
+    this.carregarVeiculos();
    }
 
-
-   public getVeiculos(): void {
+   public carregarVeiculos(): void {
+    this.spinner.show();
 
      //Vou fazer um get do protocolo http neste URL
-     this.veiculoService.getVeiculos().subscribe({
-       next: (_veiculos: Veiculo[]) => {
-         this.veiculos = _veiculos;
-         this.veiculosFiltrados = this.veiculos;
+     this.veiculoService.getVeiculos(
+                      this.pagination.currentPage,
+                      this.pagination.itemsPerPage).subscribe({
+       next: (paginatedResult: PaginatedResult<Veiculo[]>) => {
+         this.veiculos = paginatedResult.result;
+         this.pagination = paginatedResult.pagination;
        },
        error: (error: any) => {
          this.spinner.hide();
@@ -75,19 +88,10 @@ export class VeiculoListaComponent implements OnInit {
      });
    }
 
-   //Modal
-   openModal(template: TemplateRef<any>):void {
-     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-   }
-
-   confirm(): void {
-     this.modalRef?.hide();
-     this.toastr.success('O Veiculo foi apagado com sucesso!', 'Apagado');
-   }
-
-   decline(): void {
-     this.modalRef?.hide();
-   }
+   public pageChanged(event): void {
+    this.pagination.currentPage = event.page;
+    this.carregarVeiculos();
+  }
 
    detalheVeiculo(veiculoId: number): void{
     //this.router.navigate([`veiculos/detalhe/${veiculoId}`]);

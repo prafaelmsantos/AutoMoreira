@@ -1,4 +1,5 @@
 ﻿using AutoMoreira.Core.Models;
+using AutoMoreira.Persistence.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace AutoMoreira.Persistence.Interfaces.Repositories
 {
     public interface IVeiculoRepository
     {
-        Task<Veiculo[]> GetAllVeiculosAsync();
+        //Sem paginação
+        //Task<Veiculo[]> GetAllVeiculosAsync();
+        Task<PageList<Veiculo>> GetAllVeiculosAsync(PageParams pageParams);
         Task<Veiculo> GetVeiculoByIdAsync(int veiculoId);
     }
 }

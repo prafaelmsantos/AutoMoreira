@@ -111,10 +111,10 @@ namespace AutoMoreira.API
             //Rafael
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "AutoMoreira.API", Version = "v1" });
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = @"JWT Authorization header usando Bearer.
+                    Description = @"JWT Authorization header utilizando o Bearer.
                                 Entre com 'Bearer ' [espaço] então coloque o seu token.
                                 Exemplo: 'Bearer 12345abcdef'",
                     Name = "Authorization",

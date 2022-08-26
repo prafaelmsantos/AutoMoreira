@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMoreira.Core.Dto;
 using AutoMoreira.Core.Models;
+using AutoMoreira.Persistence.Helpers;
 using AutoMoreira.Persistence.Interfaces.Repositories;
 using AutoMoreira.Persistence.Interfaces.Services;
 using System;
@@ -89,14 +90,20 @@ namespace AutoMoreira.Persistence.Services
             }
         }
 
-        public async Task<VeiculoDTO[]> GetAllVeiculosAsync()
+        public async Task<PageList<VeiculoDTO>> GetAllVeiculosAsync(PageParams pageParams)
         {
             try
             {
-                var veiculos = await _veiculoRepository.GetAllVeiculosAsync();
+                var veiculos = await _veiculoRepository.GetAllVeiculosAsync(pageParams);
                 if (veiculos == null) return null;
 
-                var resultado = _mapper.Map<VeiculoDTO[]>(veiculos);
+                var resultado = _mapper.Map<PageList<VeiculoDTO>>(veiculos);
+
+                //Manual Mapper
+                resultado.CurrentPage = veiculos.CurrentPage;
+                resultado.TotalPages = veiculos.TotalPages;
+                resultado.PageSize = veiculos.PageSize;
+                resultado.TotalCount = veiculos.TotalCount;
                 return resultado;
 
             }

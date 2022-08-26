@@ -1,4 +1,6 @@
-﻿using AutoMoreira.Core.Dto;
+﻿using AutoMoreira.API.Extensions;
+using AutoMoreira.Core.Dto;
+using AutoMoreira.Persistence.Helpers;
 using AutoMoreira.Persistence.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -27,12 +29,14 @@ namespace AutoMoreira.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
         {
             try
             {
-                var veiculos = await _veiculoService.GetAllVeiculosAsync();
+                var veiculos = await _veiculoService.GetAllVeiculosAsync(pageParams);
                 if (veiculos == null) return NoContent();
+
+                Response.AddPagination(veiculos.CurrentPage, veiculos.PageSize, veiculos.TotalCount, veiculos.TotalPages);
 
                 return Ok(veiculos);
             }

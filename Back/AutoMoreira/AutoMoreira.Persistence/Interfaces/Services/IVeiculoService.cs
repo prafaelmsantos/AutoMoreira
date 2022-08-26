@@ -1,4 +1,5 @@
 ﻿using AutoMoreira.Core.Dto;
+using AutoMoreira.Persistence.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace AutoMoreira.Persistence.Interfaces.Services
         Task<VeiculoDTO> UpdateVeiculo(int veiculoId, VeiculoDTO model);
         Task<bool> DeleteVeiculo(int veiculoId);
 
-        Task<VeiculoDTO[]> GetAllVeiculosAsync();
+        Task<PageList<VeiculoDTO>> GetAllVeiculosAsync(PageParams pageParams);
         Task<VeiculoDTO> GetVeiculoByIdAsync(int veiculoId);
     }
 }

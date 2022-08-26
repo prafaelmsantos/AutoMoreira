@@ -9,7 +9,7 @@
           </div>
           <input type="text"
           class="form-control col-2"
-          placeholder="Pesquisar" [(ngModel)]="filtroLista">
+          placeholder="Pesquisar" (input)="filtrarEventos($event.target)">
         </div>
       </div>
       <div>
@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody *ngIf="veiculos && veiculos.length">
-        <tr *ngFor="let veiculo of veiculosFiltrados">
+        <tr *ngFor="let veiculo of veiculos">
           <td>
               <img [collapse]="!exibirImg" [isAnimated]="true"
               [src]="mostraImagem(veiculo.imagemURL)"
@@ -76,6 +76,26 @@
         </tr>
       </tfoot>
     </table>
+
+    <div class="d-flex justify-content-center">
+
+      <pagination
+        [boundaryLinks]="true"
+
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+
+        pageBtnClass="btn"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;">
+
+      </pagination>
+
+    </div>
 
   </div>
 

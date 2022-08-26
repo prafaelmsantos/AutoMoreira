@@ -1,5 +1,6 @@
 ﻿using AutoMoreira.Core.Models;
 using AutoMoreira.Persistence.Context;
+using AutoMoreira.Persistence.Helpers;
 using AutoMoreira.Persistence.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,13 +20,20 @@ namespace AutoMoreira.Persistence.Repositories
             // _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public async Task<Veiculo[]> GetAllVeiculosAsync()
+        public async Task<PageList<Veiculo>> GetAllVeiculosAsync(PageParams pageParams)
         {
             IQueryable<Veiculo> query = _context.Veiculos;
 
-            query = query.AsNoTracking().Include(x => x.Marca).Include(y => y.Modelo).OrderBy(v => v.VeiculoId);
+            //Filtrar por tema - adicionar:
+            //.Where(e => e.Tema.ToLower().Contains(pageParams.Term.ToLower()))
 
-            return await query.ToArrayAsync();
+            query = query
+                .AsNoTracking()
+                .Include(x => x.Marca)
+                .Include(y => y.Modelo)
+                .OrderBy(v => v.VeiculoId);
+
+            return await PageList<Veiculo>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public async Task<Veiculo> GetVeiculoByIdAsync(int Id)
