@@ -29,6 +29,8 @@ namespace AutoMoreira.Persistence.Mapper
 
             CreateMap<User, UserUpdateDTO>().ReverseMap();
 
+            CreateMap<Contacto, ContactoDTO>().ReverseMap();
+
         }
     }
 }

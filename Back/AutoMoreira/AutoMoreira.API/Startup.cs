@@ -98,12 +98,14 @@ namespace AutoMoreira.API
             services.AddScoped<IModeloService, ModeloService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IContactoService, ContactoService>();
 
             services.AddScoped<IBaseRepository, BaseRepository>();
             services.AddScoped<IVeiculoRepository, VeiculoRepository>();
             services.AddScoped<IMarcaRepository, MarcaRepository>();
             services.AddScoped<IModeloRepository, ModeloRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IContactoRepository, ContactoRepository>();
 
             //Rafael AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

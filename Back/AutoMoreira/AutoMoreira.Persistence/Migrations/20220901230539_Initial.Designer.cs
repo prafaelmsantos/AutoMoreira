@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoMoreira.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220811220207_Initial")]
+    [Migration("20220901230539_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,33 @@ namespace AutoMoreira.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AutoMoreira.Core.Models.Contacto", b =>
+                {
+                    b.Property<int>("ContactoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DataHora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mensagem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactoId");
+
+                    b.ToTable("Contactos");
+                });
 
             modelBuilder.Entity("AutoMoreira.Core.Models.Identity.Role", b =>
                 {
@@ -190,6 +217,9 @@ namespace AutoMoreira.Persistence.Migrations
                     b.Property<int>("Ano")
                         .HasColumnType("int");
 
+                    b.Property<int>("Cilindrada")
+                        .HasColumnType("int");
+
                     b.Property<string>("Combustivel")
                         .HasColumnType("nvarchar(max)");
 
@@ -205,11 +235,20 @@ namespace AutoMoreira.Persistence.Migrations
                     b.Property<int>("ModeloId")
                         .HasColumnType("int");
 
+                    b.Property<int>("NumeroPortas")
+                        .HasColumnType("int");
+
                     b.Property<string>("Observacoes")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Potencia")
+                        .HasColumnType("int");
+
                     b.Property<double>("Preco")
                         .HasColumnType("float");
+
+                    b.Property<string>("Transmissao")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Versao")
                         .HasColumnType("nvarchar(max)");

@@ -18,6 +18,10 @@ namespace AutoMoreira.Core.Models
         public double Preco { get; set; }
         public int Ano { get; set; }
         public string Cor { get; set; }
+        public int NumeroPortas { get; set; }
+        public string Transmissao { get; set; }
+        public int Cilindrada { get; set; }
+        public int Potencia { get; set; }
         public string Observacoes { get; set; }
         public string ImagemURL { get; set; }
     }

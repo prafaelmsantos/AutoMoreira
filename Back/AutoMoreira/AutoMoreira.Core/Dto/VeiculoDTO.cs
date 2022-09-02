@@ -24,6 +24,10 @@ namespace AutoMoreira.Core.Dto
         public int Ano { get; set; }
 
         public string Cor { get; set; }
+        public int NumeroPortas { get; set; }
+        public string Transmissao { get; set; }
+        public int Cilindrada { get; set; }
+        public int Potencia { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório!"),
         Display(Name = "Observações"),

@@ -12,8 +12,7 @@ export class NavbarComponent implements OnInit {
   //navbar collapsed
   isCollapsed = true;
 
-  constructor(public userService: UserService,
-  private router: Router) { }
+  constructor(public userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }

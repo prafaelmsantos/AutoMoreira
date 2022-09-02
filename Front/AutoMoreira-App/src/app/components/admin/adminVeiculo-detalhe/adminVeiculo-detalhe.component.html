@@ -63,7 +63,7 @@
             <div class="form-group mt-2">
               <label>Observações:</label>
               <textarea [ngClass]="cssValidator(f.observacoes)"
-              formControlName="observacoes" rows="8" class="w-100"></textarea>
+              formControlName="observacoes" rows="16" class="w-100"></textarea>
               <div *ngIf="f.observacoes.errors?.required" class="invalid-feedback">
                 As observações são obrigatorias!
               </div>
@@ -92,6 +92,16 @@
             </div>
 
             <div class="form-group mt-2">
+              <label>Preço:</label>
+              <input type="number" class="form-control"
+              [ngClass]="cssValidator(f.preco)"
+              formControlName="preco" placeholder="0">
+              <div *ngIf="f.preco.errors?.required" class="invalid-feedback">
+                O preço é obrigatorio!
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
               <label>Cor</label>
               <input type="text" class="form-control"
               [ngClass]="cssValidator(f.cor)"
@@ -102,12 +112,42 @@
             </div>
 
             <div class="form-group mt-2">
-              <label>Preço:</label>
+              <label>Nº de Portas</label>
               <input type="number" class="form-control"
-              [ngClass]="cssValidator(f.preco)"
-              formControlName="preco" placeholder="0">
-              <div *ngIf="f.preco.errors?.required" class="invalid-feedback">
-                O preço é obrigatorio!
+              [ngClass]="cssValidator(f.numeroPortas)"
+              formControlName="numeroPortas" placeholder="Insira o numero de Portas">
+              <div *ngIf="f.numeroPortas.errors?.required" class="invalid-feedback">
+                O numero de portas é obrigatorio!
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label>Transmissão</label>
+              <input type="text" class="form-control"
+              [ngClass]="cssValidator(f.transmissao)"
+              formControlName="transmissao" placeholder="Insira a transmissão">
+              <div *ngIf="f.transmissao.errors?.required" class="invalid-feedback">
+                A transmissão é obrigatoria!
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label>Cilindrada</label>
+              <input type="number" class="form-control"
+              [ngClass]="cssValidator(f.cilindrada)"
+              formControlName="cilindrada" placeholder="Insira a cilindrada">
+              <div *ngIf="f.cilindrada.errors?.required" class="invalid-feedback">
+                A cilindrada é obrigatoria!
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label>Potência</label>
+              <input type="number" class="form-control"
+              [ngClass]="cssValidator(f.potencia)"
+              formControlName="potencia" placeholder="Insira a potencia">
+              <div *ngIf="f.potencia.errors?.required" class="invalid-feedback">
+                A potencia é obrigatoria!
               </div>
             </div>
 

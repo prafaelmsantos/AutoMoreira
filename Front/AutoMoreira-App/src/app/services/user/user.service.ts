@@ -6,9 +6,7 @@ import { environment } from '@environments/environment';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService {
   //Uma var que vai receber diversas atualizações
   private currentUserSource = new ReplaySubject<User>(1);
@@ -23,7 +21,7 @@ export class UserService {
       map((response: User) => {
         const user = response;
         if (user) {
-          this.setCurrentUser(user)
+          this.setCurrentUser(user);
         }
       })
     );
@@ -58,7 +56,7 @@ export class UserService {
   logout(): void {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
-    this.currentUserSource.complete();
+    //this.currentUserSource.complete();
   }
 
   public setCurrentUser(user: User): void {

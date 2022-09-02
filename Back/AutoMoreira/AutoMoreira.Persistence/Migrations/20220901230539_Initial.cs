@@ -54,6 +54,23 @@ namespace AutoMoreira.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Contactos",
+                columns: table => new
+                {
+                    ContactoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mensagem = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataHora = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contactos", x => x.ContactoId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Marcas",
                 columns: table => new
                 {
@@ -199,6 +216,10 @@ namespace AutoMoreira.Persistence.Migrations
                     Preco = table.Column<double>(type: "float", nullable: false),
                     Ano = table.Column<int>(type: "int", nullable: false),
                     Cor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumeroPortas = table.Column<int>(type: "int", nullable: false),
+                    Transmissao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cilindrada = table.Column<int>(type: "int", nullable: false),
+                    Potencia = table.Column<int>(type: "int", nullable: false),
                     Observacoes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImagemURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -285,6 +306,9 @@ namespace AutoMoreira.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Contactos");
 
             migrationBuilder.DropTable(
                 name: "Veiculos");

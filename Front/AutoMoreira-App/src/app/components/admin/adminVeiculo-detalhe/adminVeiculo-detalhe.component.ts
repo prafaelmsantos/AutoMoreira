@@ -80,6 +80,10 @@ export class AdminVeiculoDetalheComponent implements OnInit {
         combustivel: ['',Validators.required],
         versao: ['',[Validators.required]],
         observacoes: ['',[Validators.required]],
+        numeroPortas: ['',[Validators.required]],
+        transmissao: ['',[Validators.required]],
+        cilindrada: ['',[Validators.required]],
+        potencia: ['',[Validators.required]],
         imagemURL: [''],
       }
     );

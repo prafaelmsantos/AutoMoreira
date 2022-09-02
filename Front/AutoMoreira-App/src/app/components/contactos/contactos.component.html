@@ -20,25 +20,44 @@ background-position: 100%">
           <h6 class="text-center">Tem alguma questão que nos quer colocar?</h6>
           <h6 class="text-center mb-5">Preencha os campos abaixo e coloque todas as suas dúvidas</h6>
         </div>
-
-        <form>
+        <form [formGroup]="form">
           <div class="form-group mb-3">
-            <input type="text" name="nome" id="" class="form-control" placeholder="*Nome" required>
-          </div>
-          <div class="form-group  mb-3">
-            <input type="text" name="email" id="" class="form-control" placeholder="*Email" required>
-          </div>
-          <div class="form-group mb-3">
-            <input type="text" name="telefone" id="" class="form-control" placeholder="*Telefone" required>
+            <input type="text" class="form-control"
+                  [ngClass]="cssValidator(f.nome)"
+                  formControlName="nome" placeholder="*Nome">
+            <div *ngIf="f.nome.errors?.required" class="invalid-feedback">
+              O nome é obrigatorio!
+            </div>
           </div>
           <div class="form-group mb-3">
-            <textarea name="mensagem" id="" rows="5" class="form-control w-100" placeholder="*Mensagem" required></textarea>
+            <input type="email" class="form-control"
+                  [ngClass]="cssValidator(f.email)"
+                  formControlName="email" placeholder="*Email">
+            <div *ngIf="f.email.errors?.required" class="invalid-feedback">
+              O email é obrigatorio!
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <input type="text" class="form-control"
+                  [ngClass]="cssValidator(f.telefone)"
+                  formControlName="telefone" placeholder="*Telefone">
+            <div *ngIf="f.telefone.errors?.required" class="invalid-feedback">
+              O telefone é obrigatorio!
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <input type="text" class="form-control"
+                  [ngClass]="cssValidator(f.mensagem)"
+                  formControlName="mensagem" placeholder="*Mensagem">
+            <div *ngIf="f.mensagem.errors?.required" class="invalid-feedback">
+              A mensagem é obrigatoria!
+            </div>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" required>
             <label class="form-check-label" for="chk-rgpd">Tomei conhecimento e aceito a <strong><a class="data-protection" href="#" target="_blank">Política&nbsp;de&nbsp;Privacidade</a></strong></label>
           </div>
-          <button class="btn btn-outline-dark btn-block btn-success text-white mt-3 px-4" id="btn-s" type="submit">Enviar</button>
+          <button class="btn btn-block btn-success mt-3 px-4" [disabled]="!form.valid" (click)="guardarContacto()">Enviar</button>
         </form>
       </div>
 

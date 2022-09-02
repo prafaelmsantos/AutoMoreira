@@ -53,7 +53,8 @@ import { ModeloService } from './services/modelo/modelo.service';
 import { AdminModeloDetalheComponent } from './components/admin/adminModelo-detalhe/adminModelo-detalhe.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { AdminInformacaoListaComponent } from './components/admin/AdminInformacao-lista/AdminInformacao-lista.component';
+import { ContactoService } from './services/contacto/contacto.service';
+import { AdminContactoListaComponent } from './components/admin/adminContacto-lista/adminContacto-lista.component';
 
 
 
@@ -86,7 +87,7 @@ defineLocale('pt-br', ptBrLocale);
     AdminModeloListaComponent,
     AdminModeloDetalheComponent,
     NavbarComponent,
-    AdminInformacaoListaComponent
+    AdminContactoListaComponent
 
   ],
   imports: [
@@ -119,6 +120,7 @@ defineLocale('pt-br', ptBrLocale);
     MarcaService,
     ModeloService,
     UserService,
+    ContactoService,
     { provide: CarouselConfig, useValue: { interval: 3500, noPause: true, showIndicators: true } },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
 

@@ -18,8 +18,8 @@ import { AdminMarcaDetalheComponent } from './components/admin/adminMarca-detalh
 import { AdminModeloListaComponent } from './components/admin/adminModelo-lista/adminModelo-lista.component';
 import { AdminModeloDetalheComponent } from './components/admin/adminModelo-detalhe/adminModelo-detalhe.component';
 import { HomeComponent } from './components/home/home.component';
-import { AdminInformacaoListaComponent } from './components/admin/AdminInformacao-lista/AdminInformacao-lista.component';
 import { AuthGuard } from './guard/auth.guard';
+import { AdminContactoListaComponent } from './components/admin/adminContacto-lista/adminContacto-lista.component';
 
 
 
@@ -47,7 +47,7 @@ const routes: Routes = [
           { path: 'modelo/detalhe/:id', component: AdminModeloDetalheComponent },
           { path: 'modelo/detalhe', component: AdminModeloDetalheComponent },
           { path: 'home', component: AdminHomeComponent },
-          { path: 'informacao/lista', component: AdminInformacaoListaComponent },
+          { path: 'contacto/lista', component: AdminContactoListaComponent },
         ]
       },
     ]

@@ -16,5 +16,9 @@ export interface Veiculo {
   combustivel:string;
   versao: string;
   marcaNome: string;
+  numeroPortas: number;
+  transmissao: string;
+  cilindrada: number;
+  potencia: number;
 
 }

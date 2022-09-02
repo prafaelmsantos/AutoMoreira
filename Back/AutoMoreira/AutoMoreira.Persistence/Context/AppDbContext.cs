@@ -23,6 +23,7 @@ namespace AutoMoreira.Persistence.Context
         public DbSet<Veiculo> Veiculos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Modelo> Modelos { get; set; }
+        public DbSet<Contacto> Contactos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
