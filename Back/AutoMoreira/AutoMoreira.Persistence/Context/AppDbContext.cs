@@ -25,6 +25,7 @@ namespace AutoMoreira.Persistence.Context
         public DbSet<Modelo> Modelos { get; set; }
         public DbSet<Contacto> Contactos { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Necessario para o User se não, não funciona

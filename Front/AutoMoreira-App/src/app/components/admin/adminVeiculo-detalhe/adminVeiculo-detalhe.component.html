@@ -151,6 +151,22 @@
               </div>
             </div>
 
+            <div class="form-group mt-2">
+              <label>Novidade</label>
+              <select formControlName="novidade" class="form-control"
+              [ngClass]="cssValidator(f.novidade)">
+                <option [value]="false">
+                  Não
+                </option>
+                <option [value]="true">
+                  Sim
+                </option>
+              </select>
+              <div *ngIf="f.novidade.errors && f.novidade.touched" class="invalid-feedback">
+                <div *ngIf="f.novidade.errors.required">Novidade é obrigatório!</div>
+              </div>
+            </div>
+
           </div>
         </div>
 

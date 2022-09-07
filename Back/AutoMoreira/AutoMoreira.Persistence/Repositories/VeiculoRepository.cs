@@ -46,5 +46,16 @@ namespace AutoMoreira.Persistence.Repositories
 
             return await query.FirstOrDefaultAsync();
         }
+
+        public async Task<Veiculo[]> GetVeiculoByNovidadeAsync()
+        {
+            IQueryable<Veiculo> query = _context.Veiculos;
+
+
+            query = query.AsNoTracking().Include(x => x.Marca).Include(y => y.Modelo).OrderBy(p => p.VeiculoId)
+                         .Where(p => p.Novidade == true);
+
+            return await query.ToArrayAsync();
+        }
     }
 }

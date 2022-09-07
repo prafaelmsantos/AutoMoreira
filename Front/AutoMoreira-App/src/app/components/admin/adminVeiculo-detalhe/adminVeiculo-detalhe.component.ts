@@ -84,6 +84,7 @@ export class AdminVeiculoDetalheComponent implements OnInit {
         transmissao: ['',[Validators.required]],
         cilindrada: ['',[Validators.required]],
         potencia: ['',[Validators.required]],
+        novidade: ['',[Validators.required]],
         imagemURL: [''],
       }
     );

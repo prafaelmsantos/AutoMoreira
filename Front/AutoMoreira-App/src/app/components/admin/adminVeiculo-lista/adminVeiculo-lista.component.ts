@@ -161,7 +161,7 @@ export class AdminVeiculoListaComponent implements OnInit {
     this.modalRef?.hide();
   }
 
-   detalheEvento(id: number): void{
+   detalheVeiculo(id: number): void{
     //this.router.navigate([`veiculos/detalhe/${veiculoId}`]);
     this.router.navigate([`admin/veiculo/detalhe/${id}`]);
   }

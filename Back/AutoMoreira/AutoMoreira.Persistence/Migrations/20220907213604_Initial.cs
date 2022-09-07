@@ -221,7 +221,8 @@ namespace AutoMoreira.Persistence.Migrations
                     Cilindrada = table.Column<int>(type: "int", nullable: false),
                     Potencia = table.Column<int>(type: "int", nullable: false),
                     Observacoes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImagemURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ImagemURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Novidade = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

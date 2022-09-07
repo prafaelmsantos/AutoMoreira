@@ -233,6 +233,9 @@ namespace AutoMoreira.Persistence.Migrations
                     b.Property<int>("ModeloId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Novidade")
+                        .HasColumnType("bit");
+
                     b.Property<int>("NumeroPortas")
                         .HasColumnType("int");
 

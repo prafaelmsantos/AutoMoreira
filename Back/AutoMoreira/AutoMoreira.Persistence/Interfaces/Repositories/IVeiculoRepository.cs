@@ -14,5 +14,6 @@ namespace AutoMoreira.Persistence.Interfaces.Repositories
         //Task<Veiculo[]> GetAllVeiculosAsync();
         Task<PageList<Veiculo>> GetAllVeiculosAsync(PageParams pageParams);
         Task<Veiculo> GetVeiculoByIdAsync(int veiculoId);
+        Task<Veiculo[]> GetVeiculoByNovidadeAsync();
     }
 }

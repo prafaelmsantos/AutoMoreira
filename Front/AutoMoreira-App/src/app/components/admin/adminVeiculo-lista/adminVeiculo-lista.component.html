@@ -39,6 +39,7 @@
           <th>Ano</th>
           <th>Combustivel</th>
           <th>Preço</th>
+          <th>Novidade</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -58,11 +59,12 @@
           <td>{{veiculo.ano}}</td>
           <td>{{veiculo.combustivel}}</td>
           <td>{{veiculo.preco}}&nbsp;€</td>
+          <td>{{veiculo.novidade == true? 'Sim' : 'Não'}}</td>
           <td>
-            <button type="button" class="btn btn-primary mt-3 mx-2" tooltip="Editar" (click)="detalheEvento(veiculo.veiculoId)">
+            <button type="button" class="btn btn-primary mt-3 mx-2" tooltip="Editar" (click)="detalheVeiculo(veiculo.veiculoId)">
               <i class="fas fa-edit"></i>
             </button>
-            <button type="button" class="btn btn-danger mt-3" tooltip="Excluir" (click)="openModal($event, template, veiculo.veiculoId)">
+            <button type="button" class="btn btn-danger mt-3" tooltip="Apagar" (click)="openModal($event, template, veiculo.veiculoId)">
               <i class="fas fa-trash"></i>
             </button>
           </td>
@@ -81,12 +83,10 @@
 
       <pagination
         [boundaryLinks]="true"
-
         [totalItems]="pagination.totalItems"
         [itemsPerPage]="pagination.itemsPerPage"
         [(ngModel)]="pagination.currentPage"
         (pageChanged)="pageChanged($event)"
-
         pageBtnClass="btn"
         previousText="&lsaquo;"
         nextText="&rsaquo;"

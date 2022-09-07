@@ -20,5 +20,6 @@ export interface Veiculo {
   transmissao: string;
   cilindrada: number;
   potencia: number;
+  novidade: boolean;
 
 }

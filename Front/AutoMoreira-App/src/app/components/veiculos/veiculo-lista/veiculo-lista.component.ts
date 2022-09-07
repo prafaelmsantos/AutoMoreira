@@ -43,7 +43,7 @@ export class VeiculoListaComponent implements OnInit {
               },
               (error: any) => {
                 this.spinner.hide();
-                this.toastr.error('Erro ao carregar os Vventos', 'Erro!');
+                this.toastr.error('Erro ao carregar os veiculos', 'Erro!');
               }
             )
             .add(() => this.spinner.hide());
@@ -99,7 +99,7 @@ export class VeiculoListaComponent implements OnInit {
   }
 
   public mostraImagem(imagemURL: string) : string {
-    return imagemURL !== '' || imagemURL !== null
+    return imagemURL !== ''
     ? `${environment.apiURL}resources/images/${imagemURL}`
     : 'assets/img/imageNotAvailable.jpg';
    }

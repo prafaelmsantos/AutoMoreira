@@ -30,7 +30,7 @@
         <div class="form-group">
           <label for="">Email:</label>
           <input class="form-control" type="text" formControlName="email"
-            [ngClass]="{'is-invalid': f.email.errors && f.email.touched}" placeholder="Insira o Nome Completo" />
+            [ngClass]="{'is-invalid': f.email.errors && f.email.touched}" placeholder="Insira o Email" />
           <div *ngIf="f.email.errors?.required && f.email.touched" class="invalid-feedback">
             e-mail é obrigatório.
           </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
           <label for="">Utilizador:</label>
           <input class="form-control" type="text" formControlName="userName"
-            [ngClass]="{'is-invalid': f.userName.errors && f.userName.touched}" placeholder="Insira o nome de Usuário" />
+            [ngClass]="{'is-invalid': f.userName.errors && f.userName.touched}" placeholder="Insira o nome de Utilizador" />
           <div class="invalid-feedback">
             Usuário é obrigatório.
           </div>

@@ -130,5 +130,20 @@ namespace AutoMoreira.Persistence.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<VeiculoDTO[]> GetVeiculoByNovidadeAsync()
+        {
+            try
+            {
+                var veiculos = await _veiculoRepository.GetVeiculoByNovidadeAsync();
+                if (veiculos == null) return null;
+                var resultado = _mapper.Map<VeiculoDTO[]>(veiculos);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

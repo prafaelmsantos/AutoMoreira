@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,5 +25,6 @@ namespace AutoMoreira.Core.Models
         public int Potencia { get; set; }
         public string Observacoes { get; set; }
         public string ImagemURL { get; set; }
+        public bool Novidade { get; set; }
     }
 }

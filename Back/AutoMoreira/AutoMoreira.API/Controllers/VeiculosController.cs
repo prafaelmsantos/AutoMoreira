@@ -64,6 +64,23 @@ namespace AutoMoreira.API.Controllers
                     $"Erro ao tentar encontrar veiculos. Erro: {ex.Message}");
             }
         }
+        [HttpGet("GetByNovidade")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetByNovidade()
+        {
+            try
+            {
+                var veiculos = await _veiculoService.GetVeiculoByNovidadeAsync();
+                if (veiculos == null) return NoContent();
+
+                return Ok(veiculos);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar encontrar novidades. Erro: {ex.Message}");
+            }
+        }
 
         [HttpPost("upload-image/{veiculoId}")]
         public async Task<IActionResult> UploadImage(int veiculoId)
@@ -87,7 +104,7 @@ namespace AutoMoreira.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar adiciona foto ao veiculo. Erro: {ex.Message}");
+                    $"Erro ao tentar adicionar foto ao veiculo. Erro: {ex.Message}");
             }
         }
 

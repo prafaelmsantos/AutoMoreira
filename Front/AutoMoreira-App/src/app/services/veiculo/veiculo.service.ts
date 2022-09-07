@@ -55,6 +55,11 @@ constructor(private http: HttpClient) { }
     return this.http.get<Veiculo>(`${this.baseURL}/${id}`).pipe(take(1));
 
   }
+  public getVeiculoByNovidade(): Observable<Veiculo[]>{
+
+    return this.http.get<Veiculo[]>(this.baseURL + '/GetByNovidade').pipe(take(1));
+
+  }
 
   public postVeiculo(veiculo: Veiculo): Observable<Veiculo> {
     return this.http.post<Veiculo>(this.baseURL, veiculo).pipe(take(1));
