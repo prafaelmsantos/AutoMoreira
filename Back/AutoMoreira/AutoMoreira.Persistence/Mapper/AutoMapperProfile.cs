@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
+using AutoMoreira.Core.Domains;
+using AutoMoreira.Core.Domains.Identity;
 using AutoMoreira.Core.Dto;
 using AutoMoreira.Core.Dto.Identity;
-using AutoMoreira.Core.Models;
-using AutoMoreira.Core.Models.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AutoMoreira.Persistence.Mapper
 {

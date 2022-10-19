@@ -1,9 +1,14 @@
-using AutoMoreira.Core.Models.Identity;
+using AutoMoreira.Core.Domains.Identity;
 using AutoMoreira.Persistence.Context;
+using AutoMoreira.Persistence.GraphQL;
+using AutoMoreira.Persistence.GraphQL.DomainsMap;
 using AutoMoreira.Persistence.Interfaces.Repositories;
 using AutoMoreira.Persistence.Interfaces.Services;
 using AutoMoreira.Persistence.Repositories;
 using AutoMoreira.Persistence.Services;
+using HotChocolate.AspNetCore.Playground;
+using HotChocolate.AspNetCore;
+using HotChocolate.Types.Pagination;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -92,7 +97,18 @@ namespace AutoMoreira.API
                     x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
+
             //Rafael
+
+            //Repositories
+            services.AddScoped<IBaseRepository, BaseRepository>();
+            services.AddScoped<IVeiculoRepository, VeiculoRepository>();
+            services.AddScoped<IMarcaRepository, MarcaRepository>();
+            services.AddScoped<IModeloRepository, ModeloRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IContactoRepository, ContactoRepository>();
+
+            //Services
             services.AddScoped<IVeiculoService, VeiculoService>();
             services.AddScoped<IMarcaService, MarcaService>();
             services.AddScoped<IModeloService, ModeloService>();
@@ -100,12 +116,23 @@ namespace AutoMoreira.API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IContactoService, ContactoService>();
 
-            services.AddScoped<IBaseRepository, BaseRepository>();
-            services.AddScoped<IVeiculoRepository, VeiculoRepository>();
-            services.AddScoped<IMarcaRepository, MarcaRepository>();
-            services.AddScoped<IModeloRepository, ModeloRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IContactoRepository, ContactoRepository>();
+            //GraphQL
+            services
+            .AddGraphQLServer()
+            .AddType<VeiculoType>()
+            .AddType<MarcaType>()
+            .AddType<ModeloType>()
+            .AddType<ContactoType>()
+            .AddQueryType<Query>()
+            .AddFiltering()
+            .AddSorting()
+            .SetPagingOptions(new PagingOptions
+            {
+                MaxPageSize = 100,
+                IncludeTotalCount = true,
+                DefaultPageSize = 10
+            })
+            .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true);
 
             //Rafael AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -153,12 +180,23 @@ namespace AutoMoreira.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AutoMoreira.API v1"));
+                
             }
 
             app.UseHttpsRedirection(); //Rafael - HTTPS
 
-            app.UseRouting(); // Indica que vou trabalhar por rotas
-            
+            //GraphQL
+            app.UsePlayground(new PlaygroundOptions
+            {
+                QueryPath = "/graphql",
+                Path = "/playground"
+            });
+
+
+            app.UseWebSockets(); //GraphQL
+
+            app.UseRouting();  // Indica que vou trabalhar por rotas. 
+
             //Auth- 1º autentica e depois autoriza
             app.UseAuthentication();
 
@@ -181,6 +219,7 @@ namespace AutoMoreira.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGraphQL(); // graphQL
             });
         }
     }

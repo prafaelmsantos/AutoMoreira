@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoMoreira.Core.Models.Identity
+namespace AutoMoreira.Core.Domains.Identity
 {
     public class Role : IdentityRole<int>
     {

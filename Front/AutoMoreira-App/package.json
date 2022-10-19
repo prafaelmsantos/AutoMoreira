@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.1",
     "@fortawesome/angular-fontawesome": "^0.10.2",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "apollo-angular": "^4.1.0",
     "bootstrap": "^5.2.0",
     "bootswatch": "^4.6.2",
     "font-awesome": "^4.7.0",

@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
+using AutoMoreira.Core.Domains.Identity;
 using AutoMoreira.Core.Dto.Identity;
-using AutoMoreira.Core.Models.Identity;
 using AutoMoreira.Persistence.Interfaces.Repositories;
 using AutoMoreira.Persistence.Interfaces.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AutoMoreira.Persistence.Services

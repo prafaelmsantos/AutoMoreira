@@ -1,4 +1,4 @@
-﻿using AutoMoreira.Core.Models;
+﻿using AutoMoreira.Core.Domains;
 using AutoMoreira.Persistence.Helpers;
 using System;
 using System.Collections.Generic;
@@ -10,8 +10,10 @@ namespace AutoMoreira.Persistence.Interfaces.Repositories
 {
     public interface IVeiculoRepository
     {
-        //Sem paginação
-        //Task<Veiculo[]> GetAllVeiculosAsync();
+        //Sem paginação para graphQL
+        Task<Veiculo[]> GetAllAsync();
+
+        //Com Paginação
         Task<PageList<Veiculo>> GetAllVeiculosAsync(PageParams pageParams);
         Task<Veiculo> GetVeiculoByIdAsync(int veiculoId);
         Task<Veiculo[]> GetVeiculoByNovidadeAsync();

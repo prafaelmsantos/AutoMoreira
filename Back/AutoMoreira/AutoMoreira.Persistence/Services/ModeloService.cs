@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using AutoMoreira.Core.Domains;
 using AutoMoreira.Core.Dto;
-using AutoMoreira.Core.Models;
 using AutoMoreira.Persistence.Interfaces.Repositories;
 using AutoMoreira.Persistence.Interfaces.Services;
 using System;

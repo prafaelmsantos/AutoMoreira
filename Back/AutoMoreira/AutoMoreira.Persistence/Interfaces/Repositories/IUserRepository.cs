@@ -1,8 +1,5 @@
-﻿using AutoMoreira.Core.Models.Identity;
-using System;
+﻿using AutoMoreira.Core.Domains.Identity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AutoMoreira.Persistence.Interfaces.Repositories

@@ -1,4 +1,4 @@
-﻿using AutoMoreira.Core.Models;
+﻿using AutoMoreira.Core.Domains;
 using AutoMoreira.Persistence.Context;
 using AutoMoreira.Persistence.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;

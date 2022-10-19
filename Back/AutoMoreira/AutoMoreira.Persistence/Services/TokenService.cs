@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using AutoMoreira.Core.Domains.Identity;
 using AutoMoreira.Core.Dto.Identity;
-using AutoMoreira.Core.Models.Identity;
 using AutoMoreira.Persistence.Interfaces.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

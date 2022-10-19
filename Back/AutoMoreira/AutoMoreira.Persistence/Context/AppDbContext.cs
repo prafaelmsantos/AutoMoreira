@@ -1,13 +1,8 @@
-﻿using AutoMoreira.Core.Models;
-using AutoMoreira.Core.Models.Identity;
+﻿using AutoMoreira.Core.Domains;
+using AutoMoreira.Core.Domains.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoMoreira.Persistence.Context
 {

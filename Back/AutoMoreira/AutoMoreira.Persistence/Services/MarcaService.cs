@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
+using AutoMoreira.Core.Domains;
 using AutoMoreira.Core.Dto;
-using AutoMoreira.Core.Models;
 using AutoMoreira.Persistence.Interfaces.Repositories;
 using AutoMoreira.Persistence.Interfaces.Services;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoMoreira.Persistence.Services
